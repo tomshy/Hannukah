@@ -1,0 +1,4 @@
+**vendor
+.jekyll-metadata
+*.lock
+_site
