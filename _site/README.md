@@ -1,2 +1,0 @@
-# Hannukah
-Url coming soon
