@@ -1,4 +1,6 @@
 language: ruby
+email: tomnyongesa5@gmail.com
+name: Tom Nyongesa
 node_js:
     - "8.10"
 rvm:
