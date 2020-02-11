@@ -1,0 +1,604 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from timmyomahony.com/blog/making-usb-push-buttons/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 03 Feb 2020 07:53:48 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta name='description' content="">
+  <meta name='keywords' content=''>  
+  <title>Making USB Push Buttons</title>
+  
+  
+
+<link rel="apple-touch-icon" sizes="180x180" href="../../static/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../static/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../static/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="../../static/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="../../static/images/favicon/safari-pinned-tab.svg" color="#67d38a">
+<meta name="msapplication-TileColor" content="#67d38a">
+<meta name="theme-color" content="#67d38a">
+  
+  <link rel="stylesheet" href="../../static/css/styles.min.css" type="text/css" charset="utf-8">
+  
+</head>
+<body class='' data-component='body'>
+  <div class='page'>
+    
+
+
+
+
+
+<div class='header-wrapper ' data-component='header'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-xs-12'>
+        <header class='header'>
+          <div class='header-logo'>
+            <a class='header-image' href='../../index.html'>
+              <img class='header-image__img' src="../../static/images/timmy-omahony-portrait-small.png" alt="Timmy O&#39;Mahony">
+            </a>
+            <div class="header-text">
+              <a class='header-title link--dark link--no-underline' href='../../index.html'>
+                Timmy O&#39;Mahony
+              </a>
+              <p class='header-subtitle color-xs-light-gray'>
+                Software Development
+              </p>
+            </div>
+          </div>
+          <nav class='header-nav'>
+            <ul class='header-nav__list'>
+              <li class='header-nav__item'>
+                <a class='header-nav__link ' href='../../index.html'>
+                  About
+                </a>
+              </li>
+              <li class='header-nav__item'>
+                <a class='header-nav__link header-nav__link--active' href='../index.html'>
+                  Blog
+                </a>
+              </li>
+              <li class='header-nav__item hide-xs show-sm'>
+                <a class='header-nav__link header-nav__link--light' href='mailto:hey@timmyomahony.com'>
+                  hey@timmyomahony.com
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <button class='header-hamburger button--reset clickable' data-header-hamburger>
+            <svg class="svg svg--hamburger" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+              viewBox="0 0 298 87.011" enable-background="new 0 0 298 87.011" xml:space="preserve">
+              <rect x="0" fill="#282828" width="298" height="21.505"/>
+              <rect y="65.506" fill="#282828" width="298" height="21.505"/>
+            </svg>
+          </button>
+        </header>
+      </div>
+    </div>
+  </div>
+  <div class='header-overlay' data-nav-overlay>
+    <div class='header-overlay__close' data-header-overlay-close>
+      <button class='button button--reset'>
+        <svg class='clickable' version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+           viewBox="0 0 327.688 327.681" enable-background="new 0 0 327.688 327.681"
+           xml:space="preserve">
+        <path fill="#231F20" d="M3.004,324.691c1.997,1.997,4.618,2.99,7.24,2.99s5.243-1.004,7.25-3.001l146.35-146.523l146.35,146.523
+          c1.997,2.008,4.618,3.001,7.25,3.001c2.621,0,5.243-1.004,7.239-2.99c4.004-3.993,4.004-10.476,0.011-14.479l-146.207-146.37
+          L324.684,17.48c3.994-4.003,3.994-10.485-0.01-14.479c-4.015-4.004-10.486-4.004-14.479,0.01l-146.36,146.524L17.484,3.012
+          C13.48-0.992,6.998-0.992,3.004,3.001C-1,6.995-1,13.477,2.994,17.48l146.187,146.361L2.994,310.211
+          C-1,314.206-1,320.698,3.004,324.691z"/>
+        </svg>
+      </button>
+    </div>
+    <div class='header-nav'>
+      <ul class='header-nav__list'>
+        <li class='header-nav__item'>
+          <a class='header-nav__link ' href='../../index.html'>
+            About
+          </a>
+        </li>
+        <li class='header-nav__item'>
+          <a class='header-nav__link header-nav__link--active' href='../index.html'>
+            Blog
+          </a>
+        </li>
+        <li class='header-nav__item'>
+          <a class='header-nav__link ' href='../../projects/featured/index.html'>
+            Projects
+          </a>
+        </li>
+        <li class='header-nav__item'>
+          <a class='header-nav__link header-nav__link--light' href='mailto:hey@timmyomahony.com'>
+            hey@timmyomahony.com
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+    <main class='main'>
+      
+  <section class='container mt-xs-20 mt-sm-40 mb-xs-120'>
+    <div class='row'>
+      <div class='col-xs-12 col-md-8 col-md-offset-2'>
+        
+        
+          
+            <p class="alert">This post is > 3 years old. Buyer beware</p>
+          
+        
+        
+
+<article class='content-item'>
+  <header class='content-item__header'>
+    <h1 class='content-item__title'>
+      Making USB Push Buttons
+    </h1>
+    
+      <p class='content-item__subtitle'>
+        <time class='content-item__date' datetime='' itemprop='datePublished'>
+          May 11, 2016
+        </time>&mdash;
+      </p>
+    
+  </header>
+  
+    <figure class='content-item__image image mb-xs-60' data-component='image'>
+      <span class='image__content'>
+        
+          <img class='image__img lazyload' data-src='../../media/filer_public/79/4d/794df97c-7db1-481b-a9b7-2fbe7ac5363d/dsc00259.jpg'>
+        
+      </span>
+    </figure>
+  
+  <div class='content-item__body user-content'>
+    <p>If you are making an application that requires some basic true/false, yes/no, a/b/c/d input from a customer, a very reliable way to achieve this is by making USB push-buttons they can press. When plugged into your machine, these buttons will appear as a generic keyboard. Each different button-press will appear as a different keyboard keystroke. This is a really reliable, reuseable and easy-to-install way of mapping hardware input to your application.</p>
+
+<h2>Overview</h2>
+
+<p>To do this, you&#8217;re going to need to buy a few parts and be comfortable with some basic soldering (if not, <a href="https://learn.sparkfun.com/tutorials/how-to-solder—through-hole-soldering">start here</a>!). We will have two big arcade-style push buttons that connected to a USB <em>HID</em> device. A HID ("human interface device") is a tiny microcontroller that is powered by a USB cable and can be programmed to perform various operations. These microcontrollers usually have input/output pins to allow you to interact with the device.</p>
+
+<div class='image mt-xs-40 mb-xs-40' data-component='image'>
+  <div class='image__content'>
+    <img class='image__img lazyload' data-src='../../media/filer_public/79/4d/794df97c-7db1-481b-a9b7-2fbe7ac5363d/dsc00259.jpg' />
+  </div>
+  <figcaption class='image__outer-caption'>
+  <h3 class='image__outer-caption__title'>
+    &mdash; The Teensy 2.0 from PJRC. This is cheap, tiny USB HID that can be very easily customized.
+  </h3>
+  </figcaption>
+</div>
+
+<p>We are going to use the <a href="https://www.pjrc.com/store/teensy.html">"Teensy" USB HID</a>. This is a really cheap and easy to use device that can be programmed using the Arduino framework. In our case we are going to connect our two buttons to the USB HID device&#8217;s input pins and program the device to listen for presses from our buttons and then output particular keystrokes. These keystrokes can then be collected by your application for input. In our case, our two buttons will output either a &#8216;t&#8217; for true, or a &#8216;f&#8217; for false.</p>
+
+<h2>Shopping list</h2>
+
+<p><img src="../../media/filer_public/bb/c3/bbc38443-c598-4c87-ace4-ede43414817c/dsc00264.jpg" alt="" /></p>
+
+<ul>
+<li>x2 USB buttons. We use the <a href="https://www.adafruit.com/product/1185">"Massive Arcade Button with LED"</a> from <a href="https://www.adafruit.com/">Adafruit.com</a>. In the EU, you can get them from the <a href="https://shop.pimoroni.com/products/massive-arcade-button-with-led-100mm-red">Pimoroni.co.uk</a> shop. Each of these buttons come in two parts - the big button itself as well as the actual underlying switch (that includes an LED that we won&#8217;t be using).</li>
+<li>x1 Teensy USB HID controller. We use the 2.0 board that can be bought on the <a href="https://www.pjrc.com/store/teensy.html">PRJC.com</a> website  or <a href="website.html">Adafruit.com</a>. You can also get the Teensy 3.2 from <a href="https://shop.pimoroni.com/products/teensy-3-1">Pimoroni.co.uk</a></li>
+<li>x1 USB mini-b cable. You probably have one lying around, but if not you should pick one up from <a href="https://www.pjrc.com/store/cable_usb_mini_b.html">PRJC.com</a> or <a href="https://www.adafruit.com/products/260">Adafruit.com</a> when you are buying the other parts.</li>
+<li>Some male/female <a href="https://www.adafruit.com/products/1954">jumper wires</a> (optional)</li>
+<li>Some wire (single core is probably best although we are using stranded wire below).</li>
+<li>A soldering iron, solder, flux, wire cutters, electrical tape, &#8230;</li>
+</ul>
+
+<h2>Setting up the Teensy header pins</h2>
+
+<p>First thing to do is to set up our Teensy. The Teensy comes with some included header pins. If you want to reuse the Teensy board for other projects, it&#8217;s a good idea to first solder these header pins onto the Teensy instead of soldering wires straight onto the board itself. You can then use the jumper wires to more easily connect to the input pins.</p>
+
+<div class='image mt-xs-40 mb-xs-40' data-component='image'>
+  <div class='image__content'>
+    <img class='image__img lazyload' data-src='../../media/filer_public/33/10/3310fd90-bc7f-4295-bf6b-47967952bc6e/dsc00272.jpg' />
+  </div>
+  <figcaption class='image__outer-caption'>
+  <h3 class='image__outer-caption__title'>
+    &mdash; The header pins might not come in the correct configuration to fit on the board so you will need to trim/break them so that they fit in the holes.
+  </h3>
+  </figcaption>
+</div>
+
+<div class='image mt-xs-40 mb-xs-40' data-component='image'>
+  <div class='image__content'>
+    <img class='image__img lazyload' data-src='../../media/filer_public/cd/97/cd97d970-2250-4960-87c0-e97d2dd0258a/dsc00296.jpg' />
+  </div>
+  <figcaption class='image__outer-caption'>
+  <h3 class='image__outer-caption__title'>
+    &mdash; Solder the corner pins of each row of header pins first to keep everything in place. Then it's easier to make your way through the remaining pins without anything falling off!
+  </h3>
+  </figcaption>
+</div>
+
+<p><img src="../../media/filer_public/6f/24/6f2458bc-5d92-4186-92fe-e3b6ef3f6078/dsc00301.jpg" alt="" /></p>
+
+<h2>Wiring up our physical buttons</h2>
+
+<p>With the header pins soldered to our Teensy we can now wire up our physical buttons. We are simply going to solder some wire to our buttons and a then a jumper cable to our wire to make it easy to connect to the Teensy. We&#8217;ll need four sections of equal-length wire as well as four jumper cables (two for each button).</p>
+
+<p>First, connect the wire to the button. On this button there are four connections, two are for the actual switch itself and the other two are for an included LED. We are going to ignore the two LED connections and just connect directly to the switch:</p>
+
+<div class='image mt-xs-40 mb-xs-40' data-component='image'>
+  <div class='image__content'>
+    <img class='image__img lazyload' data-src='../../media/filer_public/f3/58/f358a5c1-fa6b-4fc5-aff3-b25250595661/dsc00356.jpg' />
+  </div>
+  <figcaption class='image__outer-caption'>
+  <h3 class='image__outer-caption__title'>&mdash; We wrap the wire around the connection to try make is more resistant to pulls and tugs. If used in an installation, these buttons might have to be moved around.</h3>
+  </figcaption>
+</div>
+
+<p><img src="../../media/filer_public/2c/98/2c987f1a-41d5-4549-ba76-ddfaa0beaca5/dsc00360.jpg" alt="" /></p>
+
+<p><img src="../../media/filer_public/36/d0/36d0daa5-abe8-44b4-8661-421d046dadeb/dsc00364.jpg" alt="" /></p>
+
+<p>Now take the jumper cables and cut the male end off. Strip the wire back and wrap it into our existing wire for soldering.</p>
+
+<div class='image mt-xs-40 mb-xs-40' data-component='image'>
+  <div class='image__content'>
+    <img class='image__img lazyload' data-src='../../media/filer_public/11/d9/11d90a9a-d32e-4757-810d-2c464e237f47/dsc00385.jpg' />
+  </div>
+</div>
+
+<div class='image mt-xs-40 mb-xs-40' data-component='image'>
+  <div class='image__content'>
+    <img class='image__img lazyload' data-src='../../media/filer_public/5e/59/5e59e2a2-9e8f-473c-a980-1d34f799d941/dsc00371.jpg' />
+  </div>
+  <figcaption class='image__outer-caption'>
+  <h3 class='image__outer-caption__title'>&mdash; Wrapping the wires together before soldering should hopefully give us a strong join.</h3>
+  </figcaption>
+</div>
+
+<div class='image mt-xs-40 mb-xs-40' data-component='image'>
+  <div class='image__content'>
+    <img class='image__img lazyload' data-src='../../media/filer_public/7e/a6/7ea665c9-e1cf-4414-81c1-117c5b94c37e/dsc00375.jpg' />
+  </div>
+  <figcaption class='image__outer-caption'>
+  <h3 class='image__outer-caption__title'>&mdash; Ideally our jumper cables would have more strands allowing us a stronger solder.</h3>
+  </figcaption>
+</div>
+
+<p>Finally twist the wires and tape everything up. Again, if these buttons are to used in anything that might move around, we want our connections as sturdy as possible and as resistant to pulls and tugs as possible so the more tape, twists and cable ties the better.</p>
+
+<div class='image mt-xs-40 mb-xs-40' data-component='image'>
+  <div class='image__content'>
+    <img class='image__img lazyload' data-src='../../media/filer_public/6c/68/6c68cf9e-a15e-43ae-aa4a-09f9f724c9ee/dsc00377.jpg' />
+  </div>
+  <figcaption class='image__outer-caption'>
+  <h3 class='image__outer-caption__title'>&mdash; Ideally our jumper cables would have more strands allowing us a stronger solder.</h3>
+  </figcaption>
+</div>
+
+<p>Now it&#8217;s time to connect our jumper cables to the header pins on the Teensy. We need to connect each button to a ground pin and an input pin. We&#8217;re going to use <code>D4</code> for one button and <code>B1</code> for the other:</p>
+
+<div class='image mt-xs-40 mb-xs-40' data-component='image'>
+  <div class='image__content'>
+    <img class='image__img lazyload' data-src='../../media/filer_public/6d/01/6d015a7f-769d-43a1-aa75-cb86b1e3677b/dsc00386-1.jpg' />
+  </div>
+</div>
+
+<p>Note that we are directly connecting our buttons to the input pins. Usually you would have to make a <a href="https://learn.sparkfun.com/tutorials/pull-up-resistors">pull-up</a> or pull-down circuit if you wanted to use buttons as input. Luckily, <a href="https://www.pjrc.com/teensy/td_digital.html">the Teensy already has pull-up circuits build into the input pins</a>:</p>
+
+<blockquote>
+  <p>All of the pins have a pullup resistor which may be activated when the pin is an input. Just use pinMode() with INPUT_PULLUP.</p>
+  
+  <p>&#8230;</p>
+  
+  <p>The pullup resistors are useful when connecting pushbuttons that can connect the pin to ground (low), but when the button is not pressed there is no connection at all. The pullup resistor causes the voltage to be high when nothing is connected.</p>
+</blockquote>
+
+<p>so we can simply connect our buttons directly.</p>
+
+<div class='image mt-xs-40 mb-xs-40' data-component='image'>
+  <div class='image__content'>
+    <img class='image__img lazyload' data-src='../../media/filer_public/1e/f9/1ef96dfd-cf95-47ea-b607-7b3c5935efaf/dsc00278.jpg' />
+  </div>
+</div>
+
+<h2>Programming the Teensy</h2>
+
+<p>With all of our hardware set up, we can now program the Teensy to actually take the input from the buttons and output keystrokes.</p>
+
+<p>To interact with our device, we need to first download the <a href="https://www.pjrc.com/teensy/loader.html">Teensy loader application</a>. Once we have the application installed we can connect our device to our laptop via USB.</p>
+
+<h3>Communicating with the Teensy</h3>
+
+<p>The Teensy operates in two different modes: the <em>default</em> mode - which is what runs when you initially plug it in - is the application mode where whatever program you have installed runs in the background. For example, the default program installed on the Teensy simply blinks the little LED on the board. So when you first connect the Teensy you will see the LED start blinking:</p>
+
+<div class='image mt-xs-40 mb-xs-40' data-component='image'>
+  <div class='image__content'>
+    <img class='image__img lazyload' data-src='../../media/filer_public/b7/30/b7300822-097e-4334-b11e-17dfdaaa1142/dsc00312.gif' />
+  </div>
+  <figcaption class='image__outer-caption'>
+  <h3 class='image__outer-caption__title'>&mdash; The default program that runs on the Teensy simply blinks the LED. We will replace this program with one which listens to our buttons and outputs keystrokes.</h3>
+  </figcaption>
+</div>
+
+<p>The second mode is the <em>program</em> mode where instead of executing the on-board program you can actually upload new programs to the device. To enter this mode, simply press the small little button on the Teensy board itself.</p>
+
+<h3>Writing our program</h3>
+
+<p>Once the board is ready to accept new programs, you have to actually create and upload them. To do this, there is the <em>hard</em> way and the <em>easy</em> way:</p>
+
+<ul>
+<li>The <em>hard</em> way is to write your application in C, compile it on your laptop and upload the compiled binary to the Teensy using the Teensy loader application that you download and installed a minute ago.</li>
+<li>The <em>easy</em> way is to install the <a href="https://www.arduino.cc/en/Main/Software">Arduino IDE</a> as well as the custom <a href="https://www.pjrc.com/teensy/td_download.html">Teensyduino add-on libraries</a> that make the Teensy device compatible and accessible via the Ardunio IDE.</li>
+</ul>
+
+<p>We&#8217;re going to use the latter and make life easy. Follow the <a href="https://www.pjrc.com/teensy/td_download.html">PJRC guide on installing both the Arduino IDE and the Teensyduino libraries</a>, then open the Arduino IDE and create a new sketch.</p>
+
+<p>We will setup two buttons. In both cases, when a button is pressed, the little LED on the board will be lit. Furthermore, when one button is pressed it will output a &#8216;t&#8217;  (true) character, while the other will output a &#8216;f&#8217; (false) character.</p>
+
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;Bounce.h&gt;</span><span class="cp"></span>
+
+<span class="c1">// Define our two buttons. We are using the</span>
+<span class="c1">// 3rd party &quot;bounce&quot; library to more reliably</span>
+<span class="c1">// read the button clicks.</span>
+<span class="c1">//</span>
+<span class="c1">// Read more:</span>
+<span class="c1">// https://www.pjrc.com/teensy/td_libs_Bounce.html</span>
+<span class="n">Bounce</span> <span class="n">buttonTrue</span> <span class="o">=</span> <span class="n">Bounce</span><span class="p">(</span><span class="n">PIN_D4</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="n">Bounce</span> <span class="n">buttonFalse</span> <span class="o">=</span> <span class="n">Bounce</span><span class="p">(</span><span class="n">PIN_B1</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+
+<span class="c1">// Setup the two buttons with the pins we</span>
+<span class="c1">// have connected to and make sure to</span>
+<span class="c1">// make use of the internal pull-up circuitry</span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="n">PIN_D4</span><span class="p">,</span> <span class="n">INPUT_PULLUP</span><span class="p">);</span> <span class="c1">// True button</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="n">PIN_B1</span><span class="p">,</span> <span class="n">INPUT_PULLUP</span><span class="p">);</span> <span class="c1">// False button</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="n">PIN_D6</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span> <span class="c1">// LED</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">buttonTrue</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+  <span class="n">buttonFalse</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+
+  <span class="c1">// Our &#39;true&#39; button; outputs a &#39;t&#39; keypress</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">buttonTrue</span><span class="p">.</span><span class="n">fallingEdge</span><span class="p">())</span> <span class="p">{</span>
+   <span class="n">Keyboard</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;t&quot;</span><span class="p">);</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">PIN_D6</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span> <span class="c1">// LED ON</span>
+  <span class="p">}</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">buttonTrue</span><span class="p">.</span><span class="n">risingEdge</span><span class="p">()){</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">PIN_D6</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span> <span class="c1">// LED OFF</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Our &#39;false&#39; button; outputs a &#39;f&#39; keypress</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">buttonFalse</span><span class="p">.</span><span class="n">fallingEdge</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">Keyboard</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;f&quot;</span><span class="p">);</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">PIN_D6</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span> <span class="c1">// LED ON</span>
+  <span class="p">}</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">buttonFalse</span><span class="p">.</span><span class="n">risingEdge</span><span class="p">()){</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">PIN_D6</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span> <span class="c1">// LED OFF</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+
+and hit *verify* to compile the program and *upload* to send it to the Teensy:
+
+<div class='image mt-xs-40 mb-xs-40' data-component='image'>
+  <div class='image__content'>
+    <img class='image__img lazyload' data-src='../../media/filer_public/a9/e4/a9e4eb8a-e299-4d84-9abb-5d4ad7a8c56d/screen-shot-2016-05-16-at-154402.jpg' />
+  </div>
+</div>
+
+<p>You should see some successful output in the Arduino IDE console:</p>
+
+<div class='image mt-xs-40 mb-xs-40' data-component='image'>
+  <div class='image__content'>
+    <img class='image__img lazyload' data-src='../../media/filer_public/62/c2/62c213dd-ac1c-4665-bbcb-4e85390d0c66/screen_shot_2016-05-13_at_153649.png' />
+  </div>
+</div>
+
+<p>Hopefully, your program has been succesfully uploaded to the device!</p>
+
+<h3>Setting the device type</h3>
+
+<p>The last thing we need to do is to tell the Teensy in what capacity it should operate when we connect it to our laptop. Should it be a mouse? A serial device? A disk device? <a href="http://superuser.com/questions/792607/why-does-windows-think-that-my-wireless-keyboard-is-a-toaster">A toaster</a>?</p>
+
+<p>To do this, we simply go to the <code>Tools &gt; USB Type</code> in the Arduino IDE file menu and select &#8220;Keyboard + Mouse + Joystick":</p>
+
+<div class='image mt-xs-40 mb-xs-40' data-component='image'>
+  <div class='image__content'>
+    <img class='image__img lazyload' data-src='../../media/filer_public/44/ad/44adacc5-79af-43b2-a523-fb2cc2289c71/screen_shot_2016-05-13_at_154420.png' />
+  </div>
+</div>
+
+  </div>
+  <footer class='content-item__footer mt-xs-80'>
+    <p class='list-item__tags'>
+      
+        <a href='../category/hardware/index.html'>Hardware</a> &mdash;
+      
+      
+        
+      
+    </p>
+    
+      <p class='list-item__tags'>
+        Last edited 4 months, 3 weeks ago
+      </p>
+        
+  </footer>
+</article>
+      </div>
+    </div>
+    
+      <footer class='row'>   
+        <div class='col-xs-12 col-md-8 col-md-offset-2 center-xs mt-xs-80'>
+          <a class='button' href='#' data-component='comments'>
+            Load Comments
+          </a>
+          <div id='disqus_thread'></div>
+        </div>
+      </footer>
+    
+  </section>
+
+    </main>
+    
+    
+
+<footer class='footer'>
+  <div class='container'>
+    <div class='row mb-xs-40 mb-sm-60'>
+      <div class='col-xs-12 col-md-5'>
+        <h3>Timmy O&#39;Mahony</h3>
+        <p><a class='email' href='mailto:hey@timmyomahony.com'>hey@timmyomahony.com</a></p>
+        <p>I’m a software developer. I can help you solve 
+        a problem, build a product or grow existing project.</p>
+      </div>
+    </div>
+
+    <div class='row mb-xs-40 mb-ms-80'>
+      
+      <div class='col-xs-12 col-sm-6 col-md-4 mb-xs-40'>
+        <h4 class='mb-xs-20 mb-sm-40'>Menu</h4>
+        <div class="row">
+          <div class="col-xs-6">
+            <ul class='list--reset'>
+              <li>
+                <a href='../../index.html'>About</a>
+              </li>
+              <li>
+                <a href='../index.html'>Blog</a>
+              </li>
+              <li>
+                <a href='../../projects/featured/index.html'>Projects</a>
+              </li>
+              <li>
+                <span>&mdash;</span>
+              </li>
+              <li>
+                <a href='../../privacy/index.html'>Privacy</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-xs-6">
+            <ul class='list--reset'>
+              <li>
+                <a class="link--dark" href='../../books/index.html'>Books</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class='col-xs-12 col-sm-6 col-md-4 col-md-offset-1 mb-xs-40'>
+        <h4 class='mb-xs-20 mb-sm-40'>Contact</h4>
+        <ul class='list--reset'>
+          <li>
+            <a href='mailto:hey@timmyomahony.com'>
+              hey@timmyomahony.com
+            </a>
+            <a class="link--dark" href='../../pgp-key/index.html'>
+              (pgp)
+            </a>
+          </li>
+          <li>
+            <a href='skype:live:timmyomahony' target='_blank' title='Skype me'>
+              Skype
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <div class='col-xs-12 col-sm-6 col-md-3 mb-xs-40'>
+        <h4 class='mb-xs-20 mb-sm-40'>Online</h4>
+        <ul class='list--reset'>
+          <li>
+            <a href='https://github.com/timmyomahony/' target='_blank' title='Look through my Github profile'>
+              Github
+            </a>
+          </li>
+          <li>
+            <a href='https://twitter.com/timmyomahony/' target='_blank' title='Look through my Twitter profile'>
+              Twitter
+            </a>
+          </li>
+          <li>
+            <a href='http://stackoverflow.com/users/396300/timmy-omahony' target='_blank' title='See my Stack Overflow profile'>
+              Stack Overflow
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class='row'>
+      <div class='col-xs-12'>
+        <p class='copyright'>Copyright Timmy O’Mahony 2020 &copy; <a class='link--underline' href='../../about-this-site/index.html'>More information</a>  — <a class='link--dark' href='../../changelog/index.html'>Changelog (v1.5.8)</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+    
+    
+    <div class='elevator' data-component='elevator'>
+  <svg version='1.0' viewBox='0 0 32 32' xml:space='preserve' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
+    <polygon points='0.645,10.383 16,23.871 31.355,10.383 29.375,8.129 16,19.878 2.625,8.129 '/>
+  </svg>
+</div>
+    
+  </div>
+  <script src="../../static/js/vendor.min.js"></script>
+  <script src="../../static/js/scripts.min.js"></script>
+  
+
+  <!--
+    Fathom - simple website analytics - https://github.com/usefathom/fathom
+    No personal data is tracked!
+  -->
+  <script>
+    (function(f, a, t, h, o, m){
+      a[h]=a[h]||function(){
+        (a[h].q=a[h].q||[]).push(arguments)
+      };
+      o=f.createElement('script'),
+      m=f.getElementsByTagName('script')[0];
+      o.async=1; o.src=t; o.id='fathom-script';
+      m.parentNode.insertBefore(o,m)
+    })(document, window, 'http://analytics.timmyomahony.com/tracker.js', 'fathom');
+    fathom('set', 'siteId', 'SUOML');
+    fathom('trackPageview');
+  </script>
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Making USB Push Buttons",
+    "description": "excerpt",
+    "image": "/media/filer_public/79/4d/794df97c-7db1-481b-a9b7-2fbe7ac5363d/dsc00259.jpg",
+    "url": "timmyomahony.com/blog/making-usb-push-buttons/",
+    "author": {
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "name": "Timmy O&#39;Mahony",
+  "url": "http://timmyomahony.com",
+  "email": "mailto:hey@timmyomahony.com",
+  "gender": "male",
+  "image": "http://timmyomahony.com/static/images/timmy-omahony-portrait-small.png",
+  "jobTitle": "Software Development",
+  "sameAs": [
+    "https://github.com/timmyomahony/",
+    "http://stackoverflow.com/users/396300/timmy-omahony"
+  ]
+},
+    "datePublished": "2016-05-11",
+    "dateModified": "2019-09-13",
+  }
+  </script>
+
+</body>
+
+<!-- Mirrored from timmyomahony.com/blog/making-usb-push-buttons/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 03 Feb 2020 07:54:07 GMT -->
+</html>

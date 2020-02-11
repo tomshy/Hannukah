@@ -1,0 +1,27 @@
+language: ruby
+email: tomnyongesa5@gmail.com
+name: Tom Nyongesa
+node_js:
+    - "8.10"
+rvm:
+    - 2.6.5
+install:
+    - gem install jekyll bundler
+    - gem install html-proofer
+before_script:
+    - bundle install
+script:
+    - bundle exec jekyll build
+    - bundle exec htmlproofer ./_site
+branches:
+    only:
+        - release
+        - master
+after_success:
+    - echo "Build was successful"
+deploy:
+    provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    on:
+        branch: release

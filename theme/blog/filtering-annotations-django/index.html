@@ -1,0 +1,473 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from timmyomahony.com/blog/filtering-annotations-django/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 03 Feb 2020 07:56:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta name='description' content="">
+  <meta name='keywords' content=''>  
+  <title>Filtering on annotations in Django</title>
+  
+  
+
+<link rel="apple-touch-icon" sizes="180x180" href="../../static/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../static/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../static/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="../../static/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="../../static/images/favicon/safari-pinned-tab.svg" color="#67d38a">
+<meta name="msapplication-TileColor" content="#67d38a">
+<meta name="theme-color" content="#67d38a">
+  
+  <link rel="stylesheet" href="../../static/css/styles.min.css" type="text/css" charset="utf-8">
+  
+</head>
+<body class='' data-component='body'>
+  <div class='page'>
+    
+
+
+
+
+
+<div class='header-wrapper ' data-component='header'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-xs-12'>
+        <header class='header'>
+          <div class='header-logo'>
+            <a class='header-image' href='../../index.html'>
+              <img class='header-image__img' src="../../static/images/timmy-omahony-portrait-small.png" alt="Timmy O&#39;Mahony">
+            </a>
+            <div class="header-text">
+              <a class='header-title link--dark link--no-underline' href='../../index.html'>
+                Timmy O&#39;Mahony
+              </a>
+              <p class='header-subtitle color-xs-light-gray'>
+                Software Development
+              </p>
+            </div>
+          </div>
+          <nav class='header-nav'>
+            <ul class='header-nav__list'>
+              <li class='header-nav__item'>
+                <a class='header-nav__link ' href='../../index.html'>
+                  About
+                </a>
+              </li>
+              <li class='header-nav__item'>
+                <a class='header-nav__link header-nav__link--active' href='../index.html'>
+                  Blog
+                </a>
+              </li>
+              <li class='header-nav__item hide-xs show-sm'>
+                <a class='header-nav__link header-nav__link--light' href='mailto:hey@timmyomahony.com'>
+                  hey@timmyomahony.com
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <button class='header-hamburger button--reset clickable' data-header-hamburger>
+            <svg class="svg svg--hamburger" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+              viewBox="0 0 298 87.011" enable-background="new 0 0 298 87.011" xml:space="preserve">
+              <rect x="0" fill="#282828" width="298" height="21.505"/>
+              <rect y="65.506" fill="#282828" width="298" height="21.505"/>
+            </svg>
+          </button>
+        </header>
+      </div>
+    </div>
+  </div>
+  <div class='header-overlay' data-nav-overlay>
+    <div class='header-overlay__close' data-header-overlay-close>
+      <button class='button button--reset'>
+        <svg class='clickable' version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+           viewBox="0 0 327.688 327.681" enable-background="new 0 0 327.688 327.681"
+           xml:space="preserve">
+        <path fill="#231F20" d="M3.004,324.691c1.997,1.997,4.618,2.99,7.24,2.99s5.243-1.004,7.25-3.001l146.35-146.523l146.35,146.523
+          c1.997,2.008,4.618,3.001,7.25,3.001c2.621,0,5.243-1.004,7.239-2.99c4.004-3.993,4.004-10.476,0.011-14.479l-146.207-146.37
+          L324.684,17.48c3.994-4.003,3.994-10.485-0.01-14.479c-4.015-4.004-10.486-4.004-14.479,0.01l-146.36,146.524L17.484,3.012
+          C13.48-0.992,6.998-0.992,3.004,3.001C-1,6.995-1,13.477,2.994,17.48l146.187,146.361L2.994,310.211
+          C-1,314.206-1,320.698,3.004,324.691z"/>
+        </svg>
+      </button>
+    </div>
+    <div class='header-nav'>
+      <ul class='header-nav__list'>
+        <li class='header-nav__item'>
+          <a class='header-nav__link ' href='../../index.html'>
+            About
+          </a>
+        </li>
+        <li class='header-nav__item'>
+          <a class='header-nav__link header-nav__link--active' href='../index.html'>
+            Blog
+          </a>
+        </li>
+        <li class='header-nav__item'>
+          <a class='header-nav__link ' href='../../projects/featured/index.html'>
+            Projects
+          </a>
+        </li>
+        <li class='header-nav__item'>
+          <a class='header-nav__link header-nav__link--light' href='mailto:hey@timmyomahony.com'>
+            hey@timmyomahony.com
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+    <main class='main'>
+      
+  <section class='container mt-xs-20 mt-sm-40 mb-xs-120'>
+    <div class='row'>
+      <div class='col-xs-12 col-md-8 col-md-offset-2'>
+        
+        
+          
+            <p class="alert">This post is > 3 years old. Buyer beware</p>
+          
+        
+        
+
+<article class='content-item'>
+  <header class='content-item__header'>
+    <h1 class='content-item__title'>
+      Filtering on annotations in Django
+    </h1>
+    
+      <p class='content-item__subtitle'>
+        <time class='content-item__date' datetime='' itemprop='datePublished'>
+          Nov. 16, 2012
+        </time>&mdash;
+      </p>
+    
+  </header>
+  
+  <div class='content-item__body user-content'>
+    <p>More than once in the last couple of weeks I have found myself in a situation where I need to annotate a queryset in Django, but the annotation requires some sort of filtering beforehand. Ideally, this would be achievable with the Django ORM by doing something like:</p>
+
+<div class="codehilite"><pre><span></span><code><span class="c1"># Get all authors along with the total number of</span>
+<span class="c1"># Books they have written that feature a particular Tag</span>
+<span class="n">authors</span> <span class="o">=</span> <span class="n">Author</span> \
+  <span class="o">.</span><span class="n">objects</span>\
+  <span class="o">.</span><span class="n">all</span><span class="p">()</span>\
+  <span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">reviews</span><span class="o">=</span><span class="n">Count</span><span class="p">(</span><span class="n">books__tags__in</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Fiction&#39;</span><span class="p">,</span> <span class="s1">&#39;Literature&#39;</span><span class="p">]))</span>
+</code></pre></div>
+
+<p>Unfortunately this is not possible. Django&#8217;s <code>annotate</code> method only allows you to count <em>all</em> instances of a particular field. We need to come up with a custom solution. Luckily we can make use of the <a href=%e2%80%99https_/docs.djangoproject.com/en/dev/ref/models/querysets/index.html#django.db.models.query.QuerySet.extra&#8217;><code>extra</code></a> method of the QuerySet API to insert our own custom SQL.</p>
+
+<p>As an example to illustrate, let&#8217;s pretend that we have a music database of <code>Artists</code> and their <code>Albums</code>, where every album can be assigned one or more <code>Genres</code>. We want to offer the ability to get a list of all <code>Artists</code> ordered by the number of <code>Albums</code> they have in one or more particular <code>Genres</code>. For example &#8220;show me which artists have the most albums in the genre Folk or Indie&#8221;.</p>
+
+<p>To get started, let&#8217;s look at the layout of our models:</p>
+
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Artist</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">512</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Album</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">512</span><span class="p">)</span>
+  <span class="n">artist</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;Artist&quot;</span><span class="p">)</span>
+  <span class="n">genres</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="s2">&quot;Genre&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Genre</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">512</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Here are some dummy fixtures that I&#8217;ve created:</p>
+
+<p><img src="https://timmy-omahony.s3.amazonaws.com/media/filer_public/25/2f/252fc369-b149-47bd-a3c8-beec41bdba63/django-filtering-1.png" alt="Screenshot 1" /></p>
+
+<h2>Possible Approach</h2>
+
+<p>The first thought might be to simply iterate over the queryset of artists and manually add the count of all the albums with a particular genre or genres:</p>
+
+<div class="codehilite"><pre><span></span><code><span class="n">genres</span> <span class="o">=</span> <span class="n">Genre</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">name__in</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Folk&quot;</span><span class="p">,</span> <span class="s2">&quot;Indie&quot;</span><span class="p">])</span>
+<span class="n">ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">g</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">genres</span><span class="p">]</span>
+<span class="n">artists</span> <span class="o">=</span> <span class="n">Artist</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">artist</span> <span class="ow">in</span> <span class="n">artists</span><span class="p">:</span>
+  <span class="n">artist</span><span class="o">.</span><span class="n">album_count</span> <span class="o">=</span> <span class="n">artist</span><span class="o">.</span><span class="n">album_set</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">genres__in</span><span class="o">=</span><span class="n">ids</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="n">artists</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s2">&quot;-album_count&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The limitation here is that it will generate an extra query for every artist in your DB. This is fine if you only have a couple of artists, but it will eventually become a problem as you add more data.</p>
+
+<p><img src="https://timmy-omahony.s3.amazonaws.com/media/filer_public/79/17/7917d95c-1662-4526-94d1-9523c0d7d3ad/django-filtering-2.png" alt="Screenshot 2" /></p>
+
+<h2>Solution</h2>
+
+<p>A much better approach is to make use of Django&#8217;s <a href="https://docs.djangoproject.com/en/dev/ref/models/querysets/#extra"><code>extra</code></a> queryset method. This method allows us to inject extra SQL to perform operations that might otherwise not be possible through the ORM.</p>
+
+<p>Specifically, we are interested in adding a query that will <code>COUNT()</code> the number of albums for each artist that have a relationship via our M2M table with the genres &#8220;Folk&#8221; and &#8220;Indie":</p>
+
+<div class="codehilite"><pre><span></span><code><span class="n">genres</span> <span class="o">=</span> <span class="n">Genre</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">name__in</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Folk&quot;</span><span class="p">,</span> <span class="s2">&quot;Indie&quot;</span><span class="p">])</span>
+<span class="n">artists</span> <span class="o">=</span> <span class="n">Artist</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">extra</span><span class="p">(</span><span class="n">select</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;album_count&quot;</span> <span class="p">:</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">  SELECT COUNT(*)</span>
+<span class="s2">  FROM sandbox_album</span>
+<span class="s2">    JOIN sandbox_album_genres on sandbox_album_genres.album_id = sandbox_album.id</span>
+<span class="s2">  WHERE sandbox_album.artist_id = sandbox_artist.id</span>
+<span class="s2">  AND sandbox_album_genres.genre_id IN </span><span class="si">%s</span><span class="s2"></span>
+<span class="s2">  &quot;&quot;&quot;</span> <span class="o">%</span> <span class="s2">&quot;(</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">genres</span><span class="o">.</span><span class="n">all</span><span class="p">()])</span>
+<span class="p">})</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s2">&quot;-album_count&quot;</span><span class="p">,)</span>
+</code></pre></div>
+
+<p>generating the following SQL:</p>
+
+<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span> <span class="p">(</span>
+  <span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+  <span class="k">FROM</span> <span class="n">sandbox_album</span>
+    <span class="k">JOIN</span> <span class="n">sandbox_album_genres</span>
+      <span class="k">on</span> <span class="n">sandbox_album_genres</span><span class="p">.</span><span class="n">album_id</span> <span class="o">=</span> <span class="n">sandbox_album</span><span class="p">.</span><span class="n">id</span>
+  <span class="k">WHERE</span> <span class="n">sandbox_album</span><span class="p">.</span><span class="n">artist_id</span> <span class="o">=</span> <span class="n">sandbox_artist</span><span class="p">.</span><span class="n">id</span>
+  <span class="k">AND</span> <span class="n">sandbox_album_genres</span><span class="p">.</span><span class="n">genre_id</span> <span class="k">IN</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="p">)</span> <span class="k">AS</span> <span class="ss">&quot;album_count&quot;</span><span class="p">,</span>
+<span class="ss">&quot;sandbox_artist&quot;</span><span class="p">.</span><span class="ss">&quot;id&quot;</span><span class="p">,</span> <span class="ss">&quot;sandbox_artist&quot;</span><span class="p">.</span><span class="ss">&quot;name&quot;</span>
+<span class="k">FROM</span> <span class="ss">&quot;sandbox_artist&quot;</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="ss">&quot;album_count&quot;</span> <span class="k">DESC</span>
+</code></pre></div>
+
+<p>We can see that this only produces a single query:</p>
+
+<p><img src="https://timmy-omahony.s3.amazonaws.com/media/filer_public/a6/27/a627ea6a-5013-46ba-a3ea-3e45bcb906a2/django-filtering-3.png" alt="Screenshot 3" /></p>
+
+<p>yet gives us the correct results:</p>
+
+<p><img src="https://timmy-omahony.s3.amazonaws.com/media/filer_public/19/d1/19d1eb94-eb5c-4579-99c5-74a66fd2a5e3/django-filtering-4.png" alt="Screenshot 4" /></p>
+
+<h2>A Quick Second Example</h2>
+
+<p>Let&#8217;s extend our example and imagine that we want to also track <code>TourDates</code> for artists. Every <code>TourDate</code> has a <code>Country</code>. We want to be able to get a list of all artists as well as the number of <code>TourDates</code> for one or more <code>Countries</code>. For example &#8220;which artists have the most upcoming concerts in Ireland?&#8221;.</p>
+
+<p>Here are the new models:</p>
+
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Country</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">TourDate</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+  <span class="n">artist</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;Artist&quot;</span><span class="p">)</span>
+  <span class="n">date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">()</span>
+  <span class="n">country</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;Country&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Here is our custom SQL:</p>
+
+<div class="codehilite"><pre><span></span><code><span class="n">ireland</span> <span class="o">=</span> <span class="n">Country</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Ireland&quot;</span><span class="p">)</span>
+<span class="n">artists</span> <span class="o">=</span> <span class="n">Artist</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">extra</span><span class="p">(</span><span class="n">select</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;tourdate_count&quot;</span> <span class="p">:</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">  SELECT COUNT(*)</span>
+<span class="s2">  FROM sandbox_tourdate</span>
+<span class="s2">    JOIN sandbox_country on sandbox_tourdate.country_id = sandbox_country.id</span>
+<span class="s2">  WHERE sandbox_tourdate.artist_id = sandbox_artist.id</span>
+<span class="s2">  AND sandbox_tourdate.country_id = </span><span class="si">%d</span><span class="s2"> &quot;&quot;&quot;</span> <span class="o">%</span> <span class="n">ireland</span><span class="o">.</span><span class="n">pk</span><span class="p">,</span>
+<span class="p">})</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s2">&quot;-tourdate_count&quot;</span><span class="p">,)</span>
+</code></pre></div>
+
+<p>and here is an example of the results:</p>
+
+<p><img src="https://timmy-omahony.s3.amazonaws.com/media/filer_public/12/8e/128e2807-3a9f-4105-99f7-98c7024de2ac/django-filtering-5.png" alt="Screenshot 5" /></p>
+
+<h2>Related Links</h2>
+
+<ul>
+<li><a href="https://docs.djangoproject.com/en/dev/ref/models/querysets/#extra">Filtering only on Annotations in Django</a></li>
+<li><a href="http://stackoverflow.com/questions/2096580/filtering-only-on-annotations-in-django">Filter Annotate Count</a></li>
+</ul>
+
+  </div>
+  <footer class='content-item__footer mt-xs-80'>
+    <p class='list-item__tags'>
+      
+        <a href='../category/web-development/index.html'>Web Development</a> &mdash;
+      
+      
+        
+          <a href='../tag/django/index.html'>Django</a>
+        
+      
+    </p>
+    
+      <p class='list-item__tags'>
+        Last edited 2 years, 2 months ago
+      </p>
+        
+  </footer>
+</article>
+      </div>
+    </div>
+    
+      <footer class='row'>   
+        <div class='col-xs-12 col-md-8 col-md-offset-2 center-xs mt-xs-80'>
+          <a class='button' href='#' data-component='comments'>
+            Load Comments
+          </a>
+          <div id='disqus_thread'></div>
+        </div>
+      </footer>
+    
+  </section>
+
+    </main>
+    
+    
+
+<footer class='footer'>
+  <div class='container'>
+    <div class='row mb-xs-40 mb-sm-60'>
+      <div class='col-xs-12 col-md-5'>
+        <h3>Timmy O&#39;Mahony</h3>
+        <p><a class='email' href='mailto:hey@timmyomahony.com'>hey@timmyomahony.com</a></p>
+        <p>I’m a software developer. I can help you solve 
+        a problem, build a product or grow existing project.</p>
+      </div>
+    </div>
+
+    <div class='row mb-xs-40 mb-ms-80'>
+      
+      <div class='col-xs-12 col-sm-6 col-md-4 mb-xs-40'>
+        <h4 class='mb-xs-20 mb-sm-40'>Menu</h4>
+        <div class="row">
+          <div class="col-xs-6">
+            <ul class='list--reset'>
+              <li>
+                <a href='../../index.html'>About</a>
+              </li>
+              <li>
+                <a href='../index.html'>Blog</a>
+              </li>
+              <li>
+                <a href='../../projects/featured/index.html'>Projects</a>
+              </li>
+              <li>
+                <span>&mdash;</span>
+              </li>
+              <li>
+                <a href='../../privacy/index.html'>Privacy</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-xs-6">
+            <ul class='list--reset'>
+              <li>
+                <a class="link--dark" href='../../books/index.html'>Books</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class='col-xs-12 col-sm-6 col-md-4 col-md-offset-1 mb-xs-40'>
+        <h4 class='mb-xs-20 mb-sm-40'>Contact</h4>
+        <ul class='list--reset'>
+          <li>
+            <a href='mailto:hey@timmyomahony.com'>
+              hey@timmyomahony.com
+            </a>
+            <a class="link--dark" href='../../pgp-key/index.html'>
+              (pgp)
+            </a>
+          </li>
+          <li>
+            <a href='skype:live:timmyomahony' target='_blank' title='Skype me'>
+              Skype
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <div class='col-xs-12 col-sm-6 col-md-3 mb-xs-40'>
+        <h4 class='mb-xs-20 mb-sm-40'>Online</h4>
+        <ul class='list--reset'>
+          <li>
+            <a href='https://github.com/timmyomahony/' target='_blank' title='Look through my Github profile'>
+              Github
+            </a>
+          </li>
+          <li>
+            <a href='https://twitter.com/timmyomahony/' target='_blank' title='Look through my Twitter profile'>
+              Twitter
+            </a>
+          </li>
+          <li>
+            <a href='http://stackoverflow.com/users/396300/timmy-omahony' target='_blank' title='See my Stack Overflow profile'>
+              Stack Overflow
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class='row'>
+      <div class='col-xs-12'>
+        <p class='copyright'>Copyright Timmy O’Mahony 2020 &copy; <a class='link--underline' href='../../about-this-site/index.html'>More information</a>  — <a class='link--dark' href='../../changelog/index.html'>Changelog (v1.5.8)</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+    
+    
+    <div class='elevator' data-component='elevator'>
+  <svg version='1.0' viewBox='0 0 32 32' xml:space='preserve' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
+    <polygon points='0.645,10.383 16,23.871 31.355,10.383 29.375,8.129 16,19.878 2.625,8.129 '/>
+  </svg>
+</div>
+    
+  </div>
+  <script src="../../static/js/vendor.min.js"></script>
+  <script src="../../static/js/scripts.min.js"></script>
+  
+
+  <!--
+    Fathom - simple website analytics - https://github.com/usefathom/fathom
+    No personal data is tracked!
+  -->
+  <script>
+    (function(f, a, t, h, o, m){
+      a[h]=a[h]||function(){
+        (a[h].q=a[h].q||[]).push(arguments)
+      };
+      o=f.createElement('script'),
+      m=f.getElementsByTagName('script')[0];
+      o.async=1; o.src=t; o.id='fathom-script';
+      m.parentNode.insertBefore(o,m)
+    })(document, window, 'http://analytics.timmyomahony.com/tracker.js', 'fathom');
+    fathom('set', 'siteId', 'SUOML');
+    fathom('trackPageview');
+  </script>
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Filtering on annotations in Django",
+    "description": "excerpt",
+    
+    "url": "timmyomahony.com/blog/filtering-annotations-django/",
+    "author": {
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "name": "Timmy O&#39;Mahony",
+  "url": "http://timmyomahony.com",
+  "email": "mailto:hey@timmyomahony.com",
+  "gender": "male",
+  "image": "http://timmyomahony.com/static/images/timmy-omahony-portrait-small.png",
+  "jobTitle": "Software Development",
+  "sameAs": [
+    "https://github.com/timmyomahony/",
+    "http://stackoverflow.com/users/396300/timmy-omahony"
+  ]
+},
+    "datePublished": "2012-11-16",
+    "dateModified": "2017-11-13",
+  }
+  </script>
+
+</body>
+
+<!-- Mirrored from timmyomahony.com/blog/filtering-annotations-django/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 03 Feb 2020 07:56:16 GMT -->
+</html>
