@@ -1,0 +1,534 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from timmyomahony.com/blog/simple-pagination-component-ember/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 03 Feb 2020 07:53:43 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta name='description' content="">
+  <meta name='keywords' content=''>  
+  <title>A simple pagination component with Ember</title>
+  
+  
+
+<link rel="apple-touch-icon" sizes="180x180" href="../../static/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../static/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../static/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="../../static/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="../../static/images/favicon/safari-pinned-tab.svg" color="#67d38a">
+<meta name="msapplication-TileColor" content="#67d38a">
+<meta name="theme-color" content="#67d38a">
+  
+  <link rel="stylesheet" href="../../static/css/styles.min.css" type="text/css" charset="utf-8">
+  
+</head>
+<body class='' data-component='body'>
+  <div class='page'>
+    
+
+
+
+
+
+<div class='header-wrapper ' data-component='header'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-xs-12'>
+        <header class='header'>
+          <div class='header-logo'>
+            <a class='header-image' href='../../index.html'>
+              <img class='header-image__img' src="../../static/images/timmy-omahony-portrait-small.png" alt="Timmy O&#39;Mahony">
+            </a>
+            <div class="header-text">
+              <a class='header-title link--dark link--no-underline' href='../../index.html'>
+                Timmy O&#39;Mahony
+              </a>
+              <p class='header-subtitle color-xs-light-gray'>
+                Software Development
+              </p>
+            </div>
+          </div>
+          <nav class='header-nav'>
+            <ul class='header-nav__list'>
+              <li class='header-nav__item'>
+                <a class='header-nav__link ' href='../../index.html'>
+                  About
+                </a>
+              </li>
+              <li class='header-nav__item'>
+                <a class='header-nav__link header-nav__link--active' href='../index.html'>
+                  Blog
+                </a>
+              </li>
+              <li class='header-nav__item hide-xs show-sm'>
+                <a class='header-nav__link header-nav__link--light' href='mailto:hey@timmyomahony.com'>
+                  hey@timmyomahony.com
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <button class='header-hamburger button--reset clickable' data-header-hamburger>
+            <svg class="svg svg--hamburger" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+              viewBox="0 0 298 87.011" enable-background="new 0 0 298 87.011" xml:space="preserve">
+              <rect x="0" fill="#282828" width="298" height="21.505"/>
+              <rect y="65.506" fill="#282828" width="298" height="21.505"/>
+            </svg>
+          </button>
+        </header>
+      </div>
+    </div>
+  </div>
+  <div class='header-overlay' data-nav-overlay>
+    <div class='header-overlay__close' data-header-overlay-close>
+      <button class='button button--reset'>
+        <svg class='clickable' version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+           viewBox="0 0 327.688 327.681" enable-background="new 0 0 327.688 327.681"
+           xml:space="preserve">
+        <path fill="#231F20" d="M3.004,324.691c1.997,1.997,4.618,2.99,7.24,2.99s5.243-1.004,7.25-3.001l146.35-146.523l146.35,146.523
+          c1.997,2.008,4.618,3.001,7.25,3.001c2.621,0,5.243-1.004,7.239-2.99c4.004-3.993,4.004-10.476,0.011-14.479l-146.207-146.37
+          L324.684,17.48c3.994-4.003,3.994-10.485-0.01-14.479c-4.015-4.004-10.486-4.004-14.479,0.01l-146.36,146.524L17.484,3.012
+          C13.48-0.992,6.998-0.992,3.004,3.001C-1,6.995-1,13.477,2.994,17.48l146.187,146.361L2.994,310.211
+          C-1,314.206-1,320.698,3.004,324.691z"/>
+        </svg>
+      </button>
+    </div>
+    <div class='header-nav'>
+      <ul class='header-nav__list'>
+        <li class='header-nav__item'>
+          <a class='header-nav__link ' href='../../index.html'>
+            About
+          </a>
+        </li>
+        <li class='header-nav__item'>
+          <a class='header-nav__link header-nav__link--active' href='../index.html'>
+            Blog
+          </a>
+        </li>
+        <li class='header-nav__item'>
+          <a class='header-nav__link ' href='../../projects/featured/index.html'>
+            Projects
+          </a>
+        </li>
+        <li class='header-nav__item'>
+          <a class='header-nav__link header-nav__link--light' href='mailto:hey@timmyomahony.com'>
+            hey@timmyomahony.com
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+    <main class='main'>
+      
+  <section class='container mt-xs-20 mt-sm-40 mb-xs-120'>
+    <div class='row'>
+      <div class='col-xs-12 col-md-8 col-md-offset-2'>
+        
+        
+          
+            <p class="alert">This post is > 3 years old. Buyer beware</p>
+          
+        
+        
+
+<article class='content-item'>
+  <header class='content-item__header'>
+    <h1 class='content-item__title'>
+      A simple pagination component with Ember
+    </h1>
+    
+      <p class='content-item__subtitle'>
+        <time class='content-item__date' datetime='' itemprop='datePublished'>
+          June 20, 2016
+        </time>&mdash;
+      </p>
+    
+  </header>
+  
+    <figure class='content-item__image image mb-xs-60' data-component='image'>
+      <span class='image__content'>
+        
+          <img class='image__img lazyload' data-src='../../media/filer_public/9a/60/9a60a6c3-7d1c-45b6-91b1-c04c2f60e4d1/photo-14754141149481-0ee5f7a27ea1.jpg'>
+        
+      </span>
+    </figure>
+  
+  <div class='content-item__body user-content'>
+    <p class="alert">You can see this in action on <a href="https://ember-twiddle.com/e26ab2cf0ee1df839cfbea5877c4fa62" target="_blank">Ember Twiddle</a>, or look at the code on <a href="https://gist.github.com/timmyomahony/e26ab2cf0ee1df839cfbea5877c4fa62" target="_blank">Github</a></p>
+
+<p>Pagination is a very basic building block in many web applications. It&#8217;s also a great illustration of how you can leverage Ember&#8217;s components to make reusable, flexible and DRY pieces of functionality.</p>
+
+<p>To demonstrate, in this post we&#8217;ll make a simple <code>{{list-pagination}}</code> component that can paginate a simple <code>&lt;ul&gt;</code>  of the teams that played in this years Euro 2016 tournament:</p>
+
+<p><img src="../../media/filer_public/2b/2c/2b2c6364-7756-47ea-8f80-40f32e06abd2/ember-pagination-2.gif" alt="Screenshot 1" /></p>
+
+<h2>Setup the un-paginated list of teams</h2>
+
+<p>To get started, we&#8217;ll create the list of teams. To make life easy, we&#8217;ll hard-code them in our application route:</p>
+
+<div class="codehilite"><pre><span></span><code><span class="c1">// app/routes/application.js</span>
+<span class="kr">import</span> <span class="nx">Ember</span> <span class="nx">from</span> <span class="s1">&#39;ember&#39;</span><span class="p">;</span>
+
+<span class="kd">let</span> <span class="nx">teams</span> <span class="o">=</span> <span class="p">[{</span>
+      <span class="nx">id</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Albania&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nx">id</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Austria&quot;</span>
+    <span class="p">},</span>
+    <span class="c1">// ... you can get the rest here: https://gist.github.com/timmyomahony/e26ab2cf0ee1df839cfbea5877c4fa62</span>
+    <span class="p">{</span>
+      <span class="nx">id</span><span class="o">:</span> <span class="mi">24</span><span class="p">,</span>
+      <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Wales&quot;</span>
+    <span class="p">}</span>
+<span class="p">];</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">Ember</span><span class="p">.</span><span class="nx">Route</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="nx">model</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">teams</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p>and display them in our application template:</p>
+
+<div class="codehilite"><pre><span></span><code><span class="x">&lt;!-- app/templates/application.html --&gt;</span>
+<span class="x">&lt;hr /&gt;</span>
+<span class="x">&lt;h1&gt;Euro 2016 teams:&lt;/h1&gt;</span>
+<span class="x">&lt;ul&gt;</span>
+<span class="x">  </span><span class="cp">{{</span><span class="m m-Attribute">#each</span> <span class="nv">model</span> <span class="nv">as</span> <span class="err">|</span><span class="nv">team</span><span class="err">|</span><span class="cp">}}</span><span class="x"></span>
+<span class="x">    &lt;li&gt;</span><span class="cp">{{</span><span class="nv">team.name</span><span class="cp">}}</span><span class="x">&lt;/li&gt;</span>
+<span class="x">  </span><span class="cp">{{</span><span class="m m-Attribute">/each</span><span class="cp">}}</span><span class="x"></span>
+<span class="x">&lt;/ul&gt;</span>
+</code></pre></div>
+
+<p>so that we now have a basic un-paginated <code>&lt;ul&gt;</code> of all the teams:</p>
+
+<p><img src="../../media/filer_public/4b/1b/4b1b6986-9010-4a8e-b534-fcd0e8a3788f/ember-pagination-3.png" alt="Screenshot 2" /></p>
+
+<h2>Create a pagination component</h2>
+
+<p>Now we&#8217;ll create a component that will paginate the above list and provide controls to move between the pages (as seen in the GIF above).</p>
+
+<div class="codehilite"><pre><span></span><code>&gt; ember g component list-pagination
+</code></pre></div>
+
+<p>To get an idea of how this component will work, let&#8217;s first show how it will eventually work in our application template:</p>
+
+<div class="codehilite"><pre><span></span><code><span class="x">&lt;!-- app/templates/application.js --&gt;</span>
+<span class="x">&lt;hr /&gt;</span>
+<span class="x">&lt;h1&gt;Euro 2016 teams:&lt;/h1&gt;</span>
+<span class="cp">{{</span><span class="m m-Attribute">#list-pagination</span> <span class="na">paginateBy</span><span class="o">=</span><span class="m">5</span> <span class="na">items</span><span class="o">=</span><span class="nv">model</span> <span class="nv">as</span> <span class="err">|</span><span class="nv">teams</span><span class="err">|</span><span class="cp">}}</span><span class="x"></span>
+<span class="x">  &lt;ul&gt;</span>
+<span class="x">    </span><span class="cp">{{</span><span class="m m-Attribute">#each</span> <span class="nv">teams</span> <span class="nv">as</span> <span class="err">|</span><span class="nv">team</span><span class="err">|</span><span class="cp">}}</span><span class="x"></span>
+<span class="x">      &lt;li&gt;</span><span class="cp">{{</span><span class="nv">team.name</span><span class="cp">}}</span><span class="x">&lt;/li&gt;</span>
+<span class="x">    </span><span class="cp">{{</span><span class="m m-Attribute">/each</span><span class="cp">}}</span><span class="x"></span>
+<span class="x">  &lt;/ul&gt;</span>
+<span class="cp">{{</span><span class="m m-Attribute">/list-pagination</span><span class="cp">}}</span><span class="x"></span>
+</code></pre></div>
+
+<p>We are <a href="https://guides.emberjs.com/v2.6.0/components/wrapping-content-in-a-component/">using the component in its block form to entirely wrap the existing list.</a>. This allows us to reuse the pagination component with any sort of list. The styling and implementation of the internal list can be left to the user to declare in the component&#8217;s block template (the content between <code>{{#list-pagination ...}}</code> and <code>{{/list-pagination}}</code>).</p>
+
+<h2>The pagination component and template</h2>
+
+<p>Lets&#8217; first looks at <code>list-pagination.js</code>:</p>
+
+<div class="codehilite"><pre><span></span><code><span class="c1">// app/components/list-pagination.js</span>
+<span class="kr">import</span> <span class="nx">Ember</span> <span class="nx">from</span> <span class="s1">&#39;ember&#39;</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">Ember</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="nx">tagName</span><span class="o">:</span> <span class="s2">&quot;section&quot;</span><span class="p">,</span>
+  <span class="c1">// The page we are currently on</span>
+  <span class="nx">page</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="c1">// The number of items to show per page</span>
+  <span class="nx">paginateBy</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="c1">// Returns the list of items for the current page only</span>
+  <span class="nx">paginatedItems</span><span class="o">:</span> <span class="nx">Ember</span><span class="p">.</span><span class="nx">computed</span><span class="p">(</span><span class="s1">&#39;items&#39;</span><span class="p">,</span> <span class="s1">&#39;page&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;paginateBy&#39;</span><span class="p">));</span>
+    <span class="kd">var</span> <span class="nx">j</span> <span class="o">=</span> <span class="nx">i</span> <span class="o">+</span> <span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;paginateBy&#39;</span><span class="p">));</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;items&#39;</span><span class="p">).</span><span class="nx">slice</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">j</span><span class="p">);</span>
+  <span class="p">}),</span>
+  <span class="c1">// The total number of pages that our items span</span>
+  <span class="nx">numberOfPages</span><span class="o">:</span> <span class="nx">Ember</span><span class="p">.</span><span class="nx">computed</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;items.length&#39;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;paginateBy&#39;</span><span class="p">));</span>
+    <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">n</span><span class="o">/</span><span class="nx">c</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">n</span> <span class="o">%</span> <span class="nx">c</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">r</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">r</span><span class="p">;</span>
+  <span class="p">}),</span>
+  <span class="c1">// An array containing the number of each page: [1, 2, 3, 4, 5, ...]</span>
+  <span class="nx">pageNumbers</span><span class="o">:</span> <span class="nx">Ember</span><span class="p">.</span><span class="nx">computed</span><span class="p">(</span><span class="s1">&#39;numberOfPages&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;numberOfPages&#39;</span><span class="p">));</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">n</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">n</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">n</span><span class="p">;</span>
+  <span class="p">}),</span>
+  <span class="c1">// Whether or not to show the &quot;next&quot; button</span>
+  <span class="nx">showNext</span><span class="o">:</span> <span class="nx">Ember</span><span class="p">.</span><span class="nx">computed</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;numberOfPages&#39;</span><span class="p">));</span>
+  <span class="p">}),</span>
+  <span class="c1">// Whether or not to show the &quot;previous&quot; button</span>
+  <span class="nx">showPrevious</span><span class="o">:</span> <span class="nx">Ember</span><span class="p">.</span><span class="nx">computed</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="p">}),</span>
+  <span class="c1">// The text to display on the &quot;next&quot; button</span>
+  <span class="nx">nextText</span><span class="o">:</span> <span class="s1">&#39;Next page&#39;</span><span class="p">,</span>
+  <span class="c1">// The text to display on the &quot;previous&quot; button</span>
+  <span class="nx">previousText</span><span class="o">:</span> <span class="s1">&#39;Previous page&#39;</span><span class="p">,</span>
+  <span class="nx">actions</span><span class="o">:</span> <span class="p">{</span>
+    <span class="c1">// Show the next page of items</span>
+    <span class="nx">nextClicked</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;numberOfPages&#39;</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="c1">// Show the previous page of items</span>
+    <span class="nx">previousClicked</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="c1">// Go to the clicked page of items</span>
+    <span class="nx">pageClicked</span><span class="p">(</span><span class="nx">pageNumber</span><span class="p">){</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">,</span> <span class="nx">pageNumber</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p>The code is commented, but the important part to note is the <a href="https://guides.emberjs.com/v2.6.0/object-model/computed-properties/">computed property</a> <code>paginatedItems</code>. Instead of returning all of the items passed into our component, it figures out what page we are on and returns only those items that are within the current page.</p>
+
+<p>Now let&#8217;s see the component&#8217;s template:</p>
+
+<div class="codehilite"><pre><span></span><code><span class="cp">{{</span><span class="nv">yield</span> <span class="nv">paginatedItems</span><span class="cp">}}</span><span class="x"></span>
+<span class="x">&lt;ul&gt;</span>
+<span class="x">  </span><span class="cp">{{</span><span class="m m-Attribute">#if</span> <span class="nv">showPrevious</span><span class="cp">}}</span><span class="x"></span>
+<span class="x">    &lt;li&gt;&lt;button </span><span class="cp">{{</span><span class="nv">action</span> <span class="s2">&quot;previousClicked&quot;</span><span class="cp">}}</span><span class="x">&gt;</span><span class="cp">{{</span><span class="nv">previousText</span><span class="cp">}}</span><span class="x">&lt;/button&gt;&lt;/li&gt;</span>
+<span class="x">  </span><span class="cp">{{</span><span class="nv">else</span><span class="cp">}}</span><span class="x"></span>
+<span class="x">    &lt;li style=&quot;text-decoration: line-through;&quot;&gt;</span><span class="cp">{{</span><span class="nv">previousText</span><span class="cp">}}</span><span class="x">&lt;/li&gt;</span>
+<span class="x">  </span><span class="cp">{{</span><span class="m m-Attribute">/if</span><span class="cp">}}</span><span class="x"></span>
+<span class="x">  </span><span class="cp">{{</span><span class="m m-Attribute">#each</span> <span class="nv">pageNumbers</span> <span class="nv">as</span> <span class="err">|</span><span class="nv">pageNumber</span><span class="err">|</span><span class="cp">}}</span><span class="x"></span>
+<span class="x">    &lt;li&gt;&lt;button </span><span class="cp">{{</span><span class="nv">action</span> <span class="s2">&quot;pageClicked&quot;</span> <span class="nv">pageNumber</span><span class="cp">}}</span><span class="x">&gt;Page </span><span class="cp">{{</span><span class="nv">pageNumber</span><span class="cp">}}</span><span class="x">&lt;/button&gt;&lt;/li&gt;</span>
+<span class="x">  </span><span class="cp">{{</span><span class="m m-Attribute">/each</span><span class="cp">}}</span><span class="x"></span>
+<span class="x">  </span><span class="cp">{{</span><span class="m m-Attribute">#if</span> <span class="nv">showNext</span><span class="cp">}}</span><span class="x"></span>
+<span class="x">    &lt;li&gt;&lt;button </span><span class="cp">{{</span><span class="nv">action</span> <span class="s2">&quot;nextClicked&quot;</span><span class="cp">}}</span><span class="x">&gt;</span><span class="cp">{{</span><span class="nv">nextText</span><span class="cp">}}</span><span class="x">&lt;/button&gt;&lt;/li&gt;</span>
+<span class="x">  </span><span class="cp">{{</span><span class="nv">else</span><span class="cp">}}</span><span class="x"></span>
+<span class="x">    &lt;li style=&quot;text-decoration: line-through;&quot;&gt;</span><span class="cp">{{</span><span class="nv">nextText</span><span class="cp">}}</span><span class="x">&lt;/li&gt;</span>
+<span class="x">  </span><span class="cp">{{</span><span class="m m-Attribute">/if</span><span class="cp">}}</span><span class="x"></span>
+<span class="x">&lt;/ul&gt;</span>
+</code></pre></div>
+
+<h2>The Trick</h2>
+
+<p>The trick here is our <code>{{yield ...}}</code> helper.</p>
+
+<p>Firstly, remember that the <code>yield</code> helper is replaced with the component&#8217;s block template (again, the content between <code>{{#list-pagination ...}}</code> and <code>{{/list-pagination}}</code> in our application template). In other words, we are rendering our <code>&lt;ul&gt;</code> of teams in place of <code>{{yield ...}}</code>.</p>
+
+<p>Now note that we have passed <code>paginatedItems</code> as a parameter to the <code>{{yield}}</code> helper. These are called <a href="https://guides.emberjs.com/v2.6.0/components/block-params/">block parameters</a>. Doing this makes the parameter available to us back in our component&#8217;s block template if we use the <code>as |myVariable|</code> syntax:  <code>{{#list-pagination items=model as |teams|}}</code>. In other words, the <code>teams</code> variable in our block template is actually equal to <code>paginatedItems</code>. This means that when we list the teams with <code>{{#each teams as |team|}}</code>, only those teams from the current page are being displayed.</p>
+
+<p>Below the yielded template we place the controls for the rest of the component. This is the easy part. We simply show/hide the appropriate buttons using computed properties and provide actions to change the page when a button is clicked. These actions will cause the <code>paginatedItems</code> to change, in turn changing the listed teams.</p>
+
+<p>Hopefully it should be clear how this works but to see it in action you can check out this <a href="https://ember-twiddle.com/e26ab2cf0ee1df839cfbea5877c4fa62">Ember Twiddle</a> as well as browse the entire code on <a href="https://gist.github.com/timmyomahony/e26ab2cf0ee1df839cfbea5877c4fa62">Github Gist</a></p>
+
+  </div>
+  <footer class='content-item__footer mt-xs-80'>
+    <p class='list-item__tags'>
+      
+        <a href='../category/web-development/index.html'>Web Development</a> &mdash;
+      
+      
+        
+          <a href='../tag/emberjs/index.html'>Ember.js</a>
+        
+      
+    </p>
+    
+      <p class='list-item__tags'>
+        Last edited 4 months, 3 weeks ago
+      </p>
+        
+  </footer>
+</article>
+      </div>
+    </div>
+    
+      <footer class='row'>   
+        <div class='col-xs-12 col-md-8 col-md-offset-2 center-xs mt-xs-80'>
+          <a class='button' href='#' data-component='comments'>
+            Load Comments
+          </a>
+          <div id='disqus_thread'></div>
+        </div>
+      </footer>
+    
+  </section>
+
+    </main>
+    
+    
+
+<footer class='footer'>
+  <div class='container'>
+    <div class='row mb-xs-40 mb-sm-60'>
+      <div class='col-xs-12 col-md-5'>
+        <h3>Timmy O&#39;Mahony</h3>
+        <p><a class='email' href='mailto:hey@timmyomahony.com'>hey@timmyomahony.com</a></p>
+        <p>I’m a software developer. I can help you solve 
+        a problem, build a product or grow existing project.</p>
+      </div>
+    </div>
+
+    <div class='row mb-xs-40 mb-ms-80'>
+      
+      <div class='col-xs-12 col-sm-6 col-md-4 mb-xs-40'>
+        <h4 class='mb-xs-20 mb-sm-40'>Menu</h4>
+        <div class="row">
+          <div class="col-xs-6">
+            <ul class='list--reset'>
+              <li>
+                <a href='../../index.html'>About</a>
+              </li>
+              <li>
+                <a href='../index.html'>Blog</a>
+              </li>
+              <li>
+                <a href='../../projects/featured/index.html'>Projects</a>
+              </li>
+              <li>
+                <span>&mdash;</span>
+              </li>
+              <li>
+                <a href='../../privacy/index.html'>Privacy</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-xs-6">
+            <ul class='list--reset'>
+              <li>
+                <a class="link--dark" href='../../books/index.html'>Books</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class='col-xs-12 col-sm-6 col-md-4 col-md-offset-1 mb-xs-40'>
+        <h4 class='mb-xs-20 mb-sm-40'>Contact</h4>
+        <ul class='list--reset'>
+          <li>
+            <a href='mailto:hey@timmyomahony.com'>
+              hey@timmyomahony.com
+            </a>
+            <a class="link--dark" href='../../pgp-key/index.html'>
+              (pgp)
+            </a>
+          </li>
+          <li>
+            <a href='skype:live:timmyomahony' target='_blank' title='Skype me'>
+              Skype
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <div class='col-xs-12 col-sm-6 col-md-3 mb-xs-40'>
+        <h4 class='mb-xs-20 mb-sm-40'>Online</h4>
+        <ul class='list--reset'>
+          <li>
+            <a href='https://github.com/timmyomahony/' target='_blank' title='Look through my Github profile'>
+              Github
+            </a>
+          </li>
+          <li>
+            <a href='https://twitter.com/timmyomahony/' target='_blank' title='Look through my Twitter profile'>
+              Twitter
+            </a>
+          </li>
+          <li>
+            <a href='http://stackoverflow.com/users/396300/timmy-omahony' target='_blank' title='See my Stack Overflow profile'>
+              Stack Overflow
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class='row'>
+      <div class='col-xs-12'>
+        <p class='copyright'>Copyright Timmy O’Mahony 2020 &copy; <a class='link--underline' href='../../about-this-site/index.html'>More information</a>  — <a class='link--dark' href='../../changelog/index.html'>Changelog (v1.5.8)</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+    
+    
+    <div class='elevator' data-component='elevator'>
+  <svg version='1.0' viewBox='0 0 32 32' xml:space='preserve' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
+    <polygon points='0.645,10.383 16,23.871 31.355,10.383 29.375,8.129 16,19.878 2.625,8.129 '/>
+  </svg>
+</div>
+    
+  </div>
+  <script src="../../static/js/vendor.min.js"></script>
+  <script src="../../static/js/scripts.min.js"></script>
+  
+
+  <!--
+    Fathom - simple website analytics - https://github.com/usefathom/fathom
+    No personal data is tracked!
+  -->
+  <script>
+    (function(f, a, t, h, o, m){
+      a[h]=a[h]||function(){
+        (a[h].q=a[h].q||[]).push(arguments)
+      };
+      o=f.createElement('script'),
+      m=f.getElementsByTagName('script')[0];
+      o.async=1; o.src=t; o.id='fathom-script';
+      m.parentNode.insertBefore(o,m)
+    })(document, window, 'http://analytics.timmyomahony.com/tracker.js', 'fathom');
+    fathom('set', 'siteId', 'SUOML');
+    fathom('trackPageview');
+  </script>
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "A simple pagination component with Ember",
+    "description": "excerpt",
+    "image": "/media/filer_public/9a/60/9a60a6c3-7d1c-45b6-91b1-c04c2f60e4d1/photo-14754141149481-0ee5f7a27ea1.jpg",
+    "url": "timmyomahony.com/blog/simple-pagination-component-ember/",
+    "author": {
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "name": "Timmy O&#39;Mahony",
+  "url": "http://timmyomahony.com",
+  "email": "mailto:hey@timmyomahony.com",
+  "gender": "male",
+  "image": "http://timmyomahony.com/static/images/timmy-omahony-portrait-small.png",
+  "jobTitle": "Software Development",
+  "sameAs": [
+    "https://github.com/timmyomahony/",
+    "http://stackoverflow.com/users/396300/timmy-omahony"
+  ]
+},
+    "datePublished": "2016-06-20",
+    "dateModified": "2019-09-13",
+  }
+  </script>
+
+</body>
+
+<!-- Mirrored from timmyomahony.com/blog/simple-pagination-component-ember/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 03 Feb 2020 07:53:45 GMT -->
+</html>

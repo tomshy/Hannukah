@@ -1,0 +1,436 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from timmyomahony.com/blog/using-sorl-thumbnail-and-easy-thumbnails-same-template/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 03 Feb 2020 07:56:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta name='description' content="">
+  <meta name='keywords' content=''>  
+  <title>A Custom Cropping Engine With sorl-thumbnail</title>
+  
+  
+
+<link rel="apple-touch-icon" sizes="180x180" href="../../static/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../static/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../static/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="../../static/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="../../static/images/favicon/safari-pinned-tab.svg" color="#67d38a">
+<meta name="msapplication-TileColor" content="#67d38a">
+<meta name="theme-color" content="#67d38a">
+  
+  <link rel="stylesheet" href="../../static/css/styles.min.css" type="text/css" charset="utf-8">
+  
+</head>
+<body class='' data-component='body'>
+  <div class='page'>
+    
+
+
+
+
+
+<div class='header-wrapper ' data-component='header'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-xs-12'>
+        <header class='header'>
+          <div class='header-logo'>
+            <a class='header-image' href='../../index.html'>
+              <img class='header-image__img' src="../../static/images/timmy-omahony-portrait-small.png" alt="Timmy O&#39;Mahony">
+            </a>
+            <div class="header-text">
+              <a class='header-title link--dark link--no-underline' href='../../index.html'>
+                Timmy O&#39;Mahony
+              </a>
+              <p class='header-subtitle color-xs-light-gray'>
+                Software Development
+              </p>
+            </div>
+          </div>
+          <nav class='header-nav'>
+            <ul class='header-nav__list'>
+              <li class='header-nav__item'>
+                <a class='header-nav__link ' href='../../index.html'>
+                  About
+                </a>
+              </li>
+              <li class='header-nav__item'>
+                <a class='header-nav__link header-nav__link--active' href='../index.html'>
+                  Blog
+                </a>
+              </li>
+              <li class='header-nav__item hide-xs show-sm'>
+                <a class='header-nav__link header-nav__link--light' href='mailto:hey@timmyomahony.com'>
+                  hey@timmyomahony.com
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <button class='header-hamburger button--reset clickable' data-header-hamburger>
+            <svg class="svg svg--hamburger" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+              viewBox="0 0 298 87.011" enable-background="new 0 0 298 87.011" xml:space="preserve">
+              <rect x="0" fill="#282828" width="298" height="21.505"/>
+              <rect y="65.506" fill="#282828" width="298" height="21.505"/>
+            </svg>
+          </button>
+        </header>
+      </div>
+    </div>
+  </div>
+  <div class='header-overlay' data-nav-overlay>
+    <div class='header-overlay__close' data-header-overlay-close>
+      <button class='button button--reset'>
+        <svg class='clickable' version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+           viewBox="0 0 327.688 327.681" enable-background="new 0 0 327.688 327.681"
+           xml:space="preserve">
+        <path fill="#231F20" d="M3.004,324.691c1.997,1.997,4.618,2.99,7.24,2.99s5.243-1.004,7.25-3.001l146.35-146.523l146.35,146.523
+          c1.997,2.008,4.618,3.001,7.25,3.001c2.621,0,5.243-1.004,7.239-2.99c4.004-3.993,4.004-10.476,0.011-14.479l-146.207-146.37
+          L324.684,17.48c3.994-4.003,3.994-10.485-0.01-14.479c-4.015-4.004-10.486-4.004-14.479,0.01l-146.36,146.524L17.484,3.012
+          C13.48-0.992,6.998-0.992,3.004,3.001C-1,6.995-1,13.477,2.994,17.48l146.187,146.361L2.994,310.211
+          C-1,314.206-1,320.698,3.004,324.691z"/>
+        </svg>
+      </button>
+    </div>
+    <div class='header-nav'>
+      <ul class='header-nav__list'>
+        <li class='header-nav__item'>
+          <a class='header-nav__link ' href='../../index.html'>
+            About
+          </a>
+        </li>
+        <li class='header-nav__item'>
+          <a class='header-nav__link header-nav__link--active' href='../index.html'>
+            Blog
+          </a>
+        </li>
+        <li class='header-nav__item'>
+          <a class='header-nav__link ' href='../../projects/featured/index.html'>
+            Projects
+          </a>
+        </li>
+        <li class='header-nav__item'>
+          <a class='header-nav__link header-nav__link--light' href='mailto:hey@timmyomahony.com'>
+            hey@timmyomahony.com
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+    <main class='main'>
+      
+  <section class='container mt-xs-20 mt-sm-40 mb-xs-120'>
+    <div class='row'>
+      <div class='col-xs-12 col-md-8 col-md-offset-2'>
+        
+        
+          
+            <p class="alert">This post is > 3 years old. Buyer beware</p>
+          
+        
+        
+
+<article class='content-item'>
+  <header class='content-item__header'>
+    <h1 class='content-item__title'>
+      A Custom Cropping Engine With sorl-thumbnail
+    </h1>
+    
+      <p class='content-item__subtitle'>
+        <time class='content-item__date' datetime='' itemprop='datePublished'>
+          Dec. 13, 2012
+        </time>&mdash;
+      </p>
+    
+  </header>
+  
+  <div class='content-item__body user-content'>
+    <p>I was recently using <a href="https://github.com/sorl/sorl-thumbnail/"><code>sorl-thumbnail</code></a> and needed to create cropped thumbnails. I wanted to be able to specify exactly where I wanted to crop from as well as scale the dimensions of the resulting cropped thumbnail. For example &#8220;create crop from pixels <code>10,10</code> to <code>500,750</code>&#8221;,</p>
+
+<p>Unfortunately the (sensible) default behaviour of the  <code>PIL</code> engine in <code>sorl-thumbnail</code> <a href="https://github.com/sorl/sorl-thumbnail/blob/master/sorl/thumbnail/engines/base.py#L11">first scales the image, and then performs a CSS-esque crop</a> to the resulting scaled image. Essentially the reverse of what I wanted.</p>
+
+<p>The following is a custom <code>sorl-thumbnail</code> engine that can be hot-swapped (or used by default if you prefer), allowing you to create nicely cropped and scaled thumbnails.</p>
+
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">sorl.thumbnail.engines</span> <span class="kn">import</span> <span class="n">pil_engine</span>
+<span class="kn">from</span> <span class="nn">sorl.thumbnail</span> <span class="kn">import</span> <span class="n">parsers</span>
+
+<span class="k">class</span> <span class="nc">CustomCroppingEngine</span><span class="p">(</span><span class="n">pil_engine</span><span class="o">.</span><span class="n">Engine</span><span class="p">):</span>
+
+  <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">  A custom sorl.thumbnail engine (using PIL) that first crops </span>
+<span class="sd">  an image according to 4 pixel/percentage values in the source </span>
+<span class="sd">  image, then scales that crop down to the size specified in the </span>
+<span class="sd">  geometry. This is in contrast to sorl.thumbnail&#39;s default engine </span>
+<span class="sd">  which first scales the image down to the specified geometry </span>
+<span class="sd">  and applies the crop afterward.</span>
+<span class="sd">  &#39;&#39;&#39;</span>
+
+  <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">orientation</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">colorspace</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crop</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">image</span>
+
+  <span class="k">def</span> <span class="nf">_crop_parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">crop</span><span class="p">,</span> <span class="n">xy_image</span><span class="p">,</span> <span class="n">xy_window</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Convert the crop string passed by the user to accurate </span>
+<span class="sd">    cropping values (this is adapter from the default </span>
+<span class="sd">    sorl.thumbnail.parsers.parse_crop)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">crops</span> <span class="o">=</span> <span class="n">crop</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">crops</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">:</span>
+      <span class="k">raise</span> <span class="n">parsers</span><span class="o">.</span><span class="n">ThumbnailParseError</span><span class="p">(</span>
+        <span class="s1">&#39;Unrecognized crop option: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">crop</span><span class="p">)</span>
+    <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">crops</span>
+
+    <span class="k">def</span> <span class="nf">get_offset</span><span class="p">(</span><span class="n">crop</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+      <span class="n">m</span> <span class="o">=</span> <span class="n">parsers</span><span class="o">.</span><span class="n">bgpos_pat</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">crop</span><span class="p">)</span>
+      <span class="k">if</span> <span class="ow">not</span> <span class="n">m</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">parsers</span><span class="o">.</span><span class="n">ThumbnailParseError</span><span class="p">(</span>
+          <span class="s1">&#39;Unrecognized crop option: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">crop</span><span class="p">)</span>
+      <span class="c1"># we only take ints in the regexp</span>
+      <span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">))</span>
+      <span class="n">unit</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;unit&#39;</span><span class="p">)</span>
+      <span class="k">if</span> <span class="n">unit</span> <span class="o">==</span> <span class="s1">&#39;%&#39;</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">epsilon</span> <span class="o">*</span> <span class="n">value</span> <span class="o">/</span> <span class="mf">100.0</span>
+      <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)))</span>
+    <span class="n">x1</span> <span class="o">=</span> <span class="n">get_offset</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">xy_image</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">y1</span> <span class="o">=</span> <span class="n">get_offset</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">xy_image</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">x2</span> <span class="o">=</span> <span class="n">get_offset</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">xy_image</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">y2</span> <span class="o">=</span> <span class="n">get_offset</span><span class="p">(</span><span class="n">y2</span><span class="p">,</span> <span class="n">xy_image</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span>
+
+  <span class="k">def</span> <span class="nf">crop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
+    <span class="n">crop</span> <span class="o">=</span> <span class="n">options</span><span class="p">[</span><span class="s1">&#39;crop&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">crop</span> <span class="ow">or</span> <span class="n">crop</span> <span class="o">==</span> <span class="s1">&#39;noop&#39;</span><span class="p">:</span>
+      <span class="k">return</span> <span class="n">image</span>
+    <span class="n">x_image</span><span class="p">,</span> <span class="n">y_image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_image_size</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+    <span class="n">x1</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">y2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_crop_parse</span><span class="p">(</span>
+      <span class="n">crop</span><span class="p">,</span> <span class="p">(</span><span class="n">x_image</span><span class="p">,</span> <span class="n">y_image</span><span class="p">),</span> <span class="n">geometry</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_crop</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">_crop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">image</span><span class="o">.</span><span class="n">crop</span><span class="p">((</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">))</span>
+</code></pre></div>
+
+<p>this can now be used dynamically in your application:</p>
+
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">sorl.thumbnail</span> <span class="kn">import</span> <span class="n">get_thumbnail</span><span class="p">,</span> <span class="n">default</span>
+<span class="kn">from</span> <span class="nn">myapp.engine</span> <span class="kn">import</span> <span class="n">CustomCroppingEngine</span>
+<span class="k">def</span> <span class="nf">crop</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">crop_width</span><span class="p">,</span> <span class="n">crop_height</span><span class="p">):</span>
+  <span class="c1"># Swap engines</span>
+  <span class="n">old_engine</span> <span class="o">=</span> <span class="n">default</span><span class="o">.</span><span class="n">engine</span>
+  <span class="n">default</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">CustomCroppingEngine</span><span class="p">()</span>
+  <span class="n">crop</span> <span class="o">=</span> <span class="n">get_thumbnail</span><span class="p">(</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">,</span>
+    <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">x</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">crop_width</span><span class="p">,</span> <span class="n">crop_height</span><span class="p">),</span>
+    <span class="n">crop</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%s%%</span><span class="s2"> </span><span class="si">%s%%</span><span class="s2"> </span><span class="si">%s%%</span><span class="s2"> </span><span class="si">%s%%</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">x1</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">y1</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">x2</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">y2</span><span class="p">)))</span>
+  <span class="c1"># Replace normal engine</span>
+  <span class="n">default</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">old_engine</span>
+  <span class="k">return</span> <span class="n">crop</span>
+</code></pre></div>
+
+<p>alternatively you can make permanent use of this engine by setting <code>settings.THUMBNAIL_ENGINE</code></p>
+
+  </div>
+  <footer class='content-item__footer mt-xs-80'>
+    <p class='list-item__tags'>
+      
+        <a href='../category/web-development/index.html'>Web Development</a> &mdash;
+      
+      
+        
+          <a href='../tag/django/index.html'>Django</a>
+        
+      
+    </p>
+    
+      <p class='list-item__tags'>
+        Last edited 2 years, 2 months ago
+      </p>
+        
+  </footer>
+</article>
+      </div>
+    </div>
+    
+      <footer class='row'>   
+        <div class='col-xs-12 col-md-8 col-md-offset-2 center-xs mt-xs-80'>
+          <a class='button' href='#' data-component='comments'>
+            Load Comments
+          </a>
+          <div id='disqus_thread'></div>
+        </div>
+      </footer>
+    
+  </section>
+
+    </main>
+    
+    
+
+<footer class='footer'>
+  <div class='container'>
+    <div class='row mb-xs-40 mb-sm-60'>
+      <div class='col-xs-12 col-md-5'>
+        <h3>Timmy O&#39;Mahony</h3>
+        <p><a class='email' href='mailto:hey@timmyomahony.com'>hey@timmyomahony.com</a></p>
+        <p>I’m a software developer. I can help you solve 
+        a problem, build a product or grow existing project.</p>
+      </div>
+    </div>
+
+    <div class='row mb-xs-40 mb-ms-80'>
+      
+      <div class='col-xs-12 col-sm-6 col-md-4 mb-xs-40'>
+        <h4 class='mb-xs-20 mb-sm-40'>Menu</h4>
+        <div class="row">
+          <div class="col-xs-6">
+            <ul class='list--reset'>
+              <li>
+                <a href='../../index.html'>About</a>
+              </li>
+              <li>
+                <a href='../index.html'>Blog</a>
+              </li>
+              <li>
+                <a href='../../projects/featured/index.html'>Projects</a>
+              </li>
+              <li>
+                <span>&mdash;</span>
+              </li>
+              <li>
+                <a href='../../privacy/index.html'>Privacy</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-xs-6">
+            <ul class='list--reset'>
+              <li>
+                <a class="link--dark" href='../../books/index.html'>Books</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class='col-xs-12 col-sm-6 col-md-4 col-md-offset-1 mb-xs-40'>
+        <h4 class='mb-xs-20 mb-sm-40'>Contact</h4>
+        <ul class='list--reset'>
+          <li>
+            <a href='mailto:hey@timmyomahony.com'>
+              hey@timmyomahony.com
+            </a>
+            <a class="link--dark" href='../../pgp-key/index.html'>
+              (pgp)
+            </a>
+          </li>
+          <li>
+            <a href='skype:live:timmyomahony' target='_blank' title='Skype me'>
+              Skype
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <div class='col-xs-12 col-sm-6 col-md-3 mb-xs-40'>
+        <h4 class='mb-xs-20 mb-sm-40'>Online</h4>
+        <ul class='list--reset'>
+          <li>
+            <a href='https://github.com/timmyomahony/' target='_blank' title='Look through my Github profile'>
+              Github
+            </a>
+          </li>
+          <li>
+            <a href='https://twitter.com/timmyomahony/' target='_blank' title='Look through my Twitter profile'>
+              Twitter
+            </a>
+          </li>
+          <li>
+            <a href='http://stackoverflow.com/users/396300/timmy-omahony' target='_blank' title='See my Stack Overflow profile'>
+              Stack Overflow
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class='row'>
+      <div class='col-xs-12'>
+        <p class='copyright'>Copyright Timmy O’Mahony 2020 &copy; <a class='link--underline' href='../../about-this-site/index.html'>More information</a>  — <a class='link--dark' href='../../changelog/index.html'>Changelog (v1.5.8)</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+    
+    
+    <div class='elevator' data-component='elevator'>
+  <svg version='1.0' viewBox='0 0 32 32' xml:space='preserve' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
+    <polygon points='0.645,10.383 16,23.871 31.355,10.383 29.375,8.129 16,19.878 2.625,8.129 '/>
+  </svg>
+</div>
+    
+  </div>
+  <script src="../../static/js/vendor.min.js"></script>
+  <script src="../../static/js/scripts.min.js"></script>
+  
+
+  <!--
+    Fathom - simple website analytics - https://github.com/usefathom/fathom
+    No personal data is tracked!
+  -->
+  <script>
+    (function(f, a, t, h, o, m){
+      a[h]=a[h]||function(){
+        (a[h].q=a[h].q||[]).push(arguments)
+      };
+      o=f.createElement('script'),
+      m=f.getElementsByTagName('script')[0];
+      o.async=1; o.src=t; o.id='fathom-script';
+      m.parentNode.insertBefore(o,m)
+    })(document, window, 'http://analytics.timmyomahony.com/tracker.js', 'fathom');
+    fathom('set', 'siteId', 'SUOML');
+    fathom('trackPageview');
+  </script>
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "A Custom Cropping Engine With sorl-thumbnail",
+    "description": "excerpt",
+    
+    "url": "timmyomahony.com/blog/using-sorl-thumbnail-and-easy-thumbnails-same-template/",
+    "author": {
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "name": "Timmy O&#39;Mahony",
+  "url": "http://timmyomahony.com",
+  "email": "mailto:hey@timmyomahony.com",
+  "gender": "male",
+  "image": "http://timmyomahony.com/static/images/timmy-omahony-portrait-small.png",
+  "jobTitle": "Software Development",
+  "sameAs": [
+    "https://github.com/timmyomahony/",
+    "http://stackoverflow.com/users/396300/timmy-omahony"
+  ]
+},
+    "datePublished": "2012-12-13",
+    "dateModified": "2017-11-13",
+  }
+  </script>
+
+</body>
+
+<!-- Mirrored from timmyomahony.com/blog/using-sorl-thumbnail-and-easy-thumbnails-same-template/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 03 Feb 2020 07:56:09 GMT -->
+</html>

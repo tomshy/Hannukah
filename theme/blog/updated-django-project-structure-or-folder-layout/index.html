@@ -1,0 +1,488 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from timmyomahony.com/blog/updated-django-project-structure-or-folder-layout/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 03 Feb 2020 07:56:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta name='description' content="">
+  <meta name='keywords' content=''>  
+  <title>An Updated General Django Project (&gt;= 1.5) Structure or Folder Layout</title>
+  
+  
+
+<link rel="apple-touch-icon" sizes="180x180" href="../../static/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../static/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../static/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="../../static/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="../../static/images/favicon/safari-pinned-tab.svg" color="#67d38a">
+<meta name="msapplication-TileColor" content="#67d38a">
+<meta name="theme-color" content="#67d38a">
+  
+  <link rel="stylesheet" href="../../static/css/styles.min.css" type="text/css" charset="utf-8">
+  
+</head>
+<body class='' data-component='body'>
+  <div class='page'>
+    
+
+
+
+
+
+<div class='header-wrapper ' data-component='header'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-xs-12'>
+        <header class='header'>
+          <div class='header-logo'>
+            <a class='header-image' href='../../index.html'>
+              <img class='header-image__img' src="../../static/images/timmy-omahony-portrait-small.png" alt="Timmy O&#39;Mahony">
+            </a>
+            <div class="header-text">
+              <a class='header-title link--dark link--no-underline' href='../../index.html'>
+                Timmy O&#39;Mahony
+              </a>
+              <p class='header-subtitle color-xs-light-gray'>
+                Software Development
+              </p>
+            </div>
+          </div>
+          <nav class='header-nav'>
+            <ul class='header-nav__list'>
+              <li class='header-nav__item'>
+                <a class='header-nav__link ' href='../../index.html'>
+                  About
+                </a>
+              </li>
+              <li class='header-nav__item'>
+                <a class='header-nav__link header-nav__link--active' href='../index.html'>
+                  Blog
+                </a>
+              </li>
+              <li class='header-nav__item hide-xs show-sm'>
+                <a class='header-nav__link header-nav__link--light' href='mailto:hey@timmyomahony.com'>
+                  hey@timmyomahony.com
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <button class='header-hamburger button--reset clickable' data-header-hamburger>
+            <svg class="svg svg--hamburger" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+              viewBox="0 0 298 87.011" enable-background="new 0 0 298 87.011" xml:space="preserve">
+              <rect x="0" fill="#282828" width="298" height="21.505"/>
+              <rect y="65.506" fill="#282828" width="298" height="21.505"/>
+            </svg>
+          </button>
+        </header>
+      </div>
+    </div>
+  </div>
+  <div class='header-overlay' data-nav-overlay>
+    <div class='header-overlay__close' data-header-overlay-close>
+      <button class='button button--reset'>
+        <svg class='clickable' version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+           viewBox="0 0 327.688 327.681" enable-background="new 0 0 327.688 327.681"
+           xml:space="preserve">
+        <path fill="#231F20" d="M3.004,324.691c1.997,1.997,4.618,2.99,7.24,2.99s5.243-1.004,7.25-3.001l146.35-146.523l146.35,146.523
+          c1.997,2.008,4.618,3.001,7.25,3.001c2.621,0,5.243-1.004,7.239-2.99c4.004-3.993,4.004-10.476,0.011-14.479l-146.207-146.37
+          L324.684,17.48c3.994-4.003,3.994-10.485-0.01-14.479c-4.015-4.004-10.486-4.004-14.479,0.01l-146.36,146.524L17.484,3.012
+          C13.48-0.992,6.998-0.992,3.004,3.001C-1,6.995-1,13.477,2.994,17.48l146.187,146.361L2.994,310.211
+          C-1,314.206-1,320.698,3.004,324.691z"/>
+        </svg>
+      </button>
+    </div>
+    <div class='header-nav'>
+      <ul class='header-nav__list'>
+        <li class='header-nav__item'>
+          <a class='header-nav__link ' href='../../index.html'>
+            About
+          </a>
+        </li>
+        <li class='header-nav__item'>
+          <a class='header-nav__link header-nav__link--active' href='../index.html'>
+            Blog
+          </a>
+        </li>
+        <li class='header-nav__item'>
+          <a class='header-nav__link ' href='../../projects/featured/index.html'>
+            Projects
+          </a>
+        </li>
+        <li class='header-nav__item'>
+          <a class='header-nav__link header-nav__link--light' href='mailto:hey@timmyomahony.com'>
+            hey@timmyomahony.com
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+    <main class='main'>
+      
+  <section class='container mt-xs-20 mt-sm-40 mb-xs-120'>
+    <div class='row'>
+      <div class='col-xs-12 col-md-8 col-md-offset-2'>
+        
+        
+          
+            <p class="alert">This post is > 3 years old. Buyer beware</p>
+          
+        
+        
+
+<article class='content-item'>
+  <header class='content-item__header'>
+    <h1 class='content-item__title'>
+      An Updated General Django Project (&gt;= 1.5) Structure or Folder Layout
+    </h1>
+    
+      <p class='content-item__subtitle'>
+        <time class='content-item__date' datetime='' itemprop='datePublished'>
+          March 22, 2014
+        </time>&mdash;
+      </p>
+    
+  </header>
+  
+  <div class='content-item__body user-content'>
+    <p class="alert"><strong>UPDATE 01/18:</strong> Since writing this blog post I've started using a great skeleton repo for new Django projects:  <a href="https://github.com/pydanny/cookiecutter-django">django-cookie-cutter</a></p>
+
+<p><a href="../a-general-django-project-structure-or-folder-layout/index.html">In a previous post</a> I discussed a sensible folder layout for deploying a new Django project. Since then, Django has <a href="https://docs.djangoproject.com/en/1.6/intro/tutorial01/#creating-a-project">updated the default project layout</a> and I&#8217;ve also had some time to reflect and adjust my previous layout. Let&#8217;s have a look at a new and improved folder structure and layout for project using Django &gt;= 1.5.</p>
+
+<p>This post assumes that you are using &#8216;virtualenv&#8217; (and ideally &#8216;virtualenvwrapper&#8217; which I very much recommend) and Github. Furthermore, to make this concrete, we will assume that the following directory is in <code>~/Sites/</code>.</p>
+
+<p>So let&#8217;s first have a general overview of the suggested layout:</p>
+
+<p><img src="../../media/filer_public/78/e7/78e7e348-555a-4d05-a8da-d17303fca19b/project-layout-1.jpg" alt="Screenshot 1" /></p>
+
+<pre><code>.                                                            # HOME PATH
+|-- football.com                                 # ENVIRONMENT PATH
+|   |-- bin
+|   |-- db.sql
+|   |-- football.com                             # SITE PATH
+|   |   |-- README.md
+|   |   |-- assets
+|   |   |-- bin
+|   |   |-- docs
+|   |   |-- etc
+|   |   |-- fabfile.py
+|   |   `-- src                                          # PROJECT PATH
+|   |       |-- app1
+|   |       |   |-- __init__.py
+|   |       |   |-- admin.py
+|   |       |   |-- forms.py
+|   |       |   |-- models.py
+|   |       |   |-- tests.py
+|   |       |   `-- urls.py
+|   |       |-- app2
+|   |       |   |-- __init__.py
+|   |       |   |-- admin.py
+|   |       |   |-- forms.py
+|   |       |   |-- models.py
+|   |       |   `-- urls.py
+|   |       |-- football
+|   |       |   |-- __init__.py
+|   |       |   |-- settings
+|   |       |   |   |-- __init__.py
+|   |       |   |   |-- development.py
+|   |       |   |   |-- private.py
+|   |       |   |   |-- production.py
+|   |       |   |   `-- settings.py
+|   |       |   |-- urls.py
+|   |       |   `-- wsgi.py
+|   |       |-- manage.py
+|   |       |-- requirements.txt
+|   |       |-- static
+|   |       |-- templates
+|   |       `-- utils
+|   |-- include
+|   |-- lib
+|   |-- media
+|   |-- share
+|   `-- static
+|-- rugby.com
+`-- tennis.com
+</code></pre>
+
+<h2>Server Files</h2>
+
+<p>The first question that needs to be asked when considering the project layout is: what needs to be checked into Git and what does not?</p>
+
+<p>Files that are only relevant to the serving location or local environment should not be checked into Github as these files will vary between development, staging and production deployments and aren&#8217;t at the core of the project. These are things like log files, databases, files system caches, user uploaded media files etc. (While they shouldn&#8217;t be checked in to Github, they most likely should be backed up - particularly in the case of user uploaded media)</p>
+
+<p>In the above image, both the <span style="color:#1b965e;">home path</span>  and <span style="color:#4394c2;">environment path</span> represent these server files and are outside of the scope of Git and therefor not checked in.</p>
+
+<h2>Project Files</h2>
+
+<p>Now that we have identified our server files we can concentrate on those files relevant to the actual project.</p>
+
+<p>Project files encompass everything relevant to your project and will be checked into Github. These are the <span style="color:#fc5959;">site path</span> and the <span style="color:#c2b73d;">project path</span> in the above image. But there is a further question that needs to be asked: which files are specific to the Django project itself and which files are not?</p>
+
+<p>When deploying your project, there are some files that aren&#8217;t necessarily related to the actual Django project but nonetheless are crucical for the project to work. These are things like configuration files, deployment scripts (fabric), documentation, PSDs etc. These non-django files are placed in the <span style="color:#fc5959;">site path</span>, while everything specifically related to Django is placed in the enclosed <span style="color:#c2b73d;">project path</span> (<a href="../a-general-django-project-structure-or-folder-layout/index.html">In my previous post</a>, all of these files were all placed together in a single folder which quickly became difficult to maintain.)</p>
+
+<h2>The Details</h2>
+
+<p>Now that a distinction has been made between the server files and the project files, we can go through each level in detail:  </p>
+
+<h3><span style="color:#1b965e;">1. Home Path</span></h3>
+
+<blockquote>
+  <p>~/Sites/</p>
+</blockquote>
+
+<p>This is simply the directory where all sites are kept. I use &#8216;virtualenvwrapper&#8217; so this directory is my <code>WORKON_HOME</code>. On your production server, this might be the &#8216;/srv/&#8217; folder.</p>
+
+<h3><span style="color:#4394c2;">2. Environment Path</span></h3>
+
+<blockquote>
+  <p>~/Sites/football.com/</p>
+</blockquote>
+
+<p>This is your local python environment, i.e. your &#8216;virtualenv&#8217;. When using &#8216;virtualenvwrapper&#8217;, my environment is created via <code>mkvirtualenv --no-site-packages football.com</code> and I can easily switch to it using the <code>workon football.com</code> command. If I am using plain &#8216;virtualenv&#8217;, this folder is create by <code>mkdir football.com</code> followed by <code>virtualenv football.com</code> and activated by <code>source football.com/bin/activate</code>.</p>
+
+<ul>
+<li><code>static</code> folder : this is where Django&#8217;s <code>staticfiles</code> app collects and copies your projects static files. It corresponds to your <code>STATIC_ROOT</code> settings.</li>
+<li><code>media</code> folder : this is where uploads are saved by the application server. It&#8217;s your <code>MEDIA_ROOT</code> setting.</li>
+<li><code>db.sql</code> : during development, this is where your sqlite3 database should go.</li>
+<li><code>bin</code>, <code>lib</code>, <code>share</code>, <code>src</code> : these are all relevant to python and created by virtualenv. For example, when you use <code>pip install</code> it will place those installed libraries in <code>lib/python2.7/site-packages/...</code>    </li>
+</ul>
+
+<h3><span style="color:#fc5959;">3. Site Path</span></h3>
+
+<blockquote>
+  <p>~/Sites/football.com/football.com/</p>
+</blockquote>
+
+<ul>
+<li><code>assets</code> : holds any design files; PSDs, mockups etc.</li>
+<li><code>bin</code> : any 3rd party binaries or scripts that are specific to the project</li>
+<li><code>docs</code> : markdown files, sphinx documentation, text files etc.</li>
+<li><code>etc</code> : holds all configuration files; apache, nginx, supervisor, uwsgi etc</li>
+<li><code>lib</code> : any custom libraries that aren&#8217;t necessarily Django or Python related.</li>
+<li><code>src</code> : our Django project and <span style="color:#c2b73d;">Project Path</span></li>
+</ul>
+
+<h3><span style="color:#c2b73d;">4. Project Path</span></h3>
+
+<blockquote>
+  <p>~/Sites/football.com/football.com/src/</p>
+</blockquote>
+
+<p>This folder is the heart of your site and encapsulates all of the code relevant to your Django project. It is the folder that is created if you run the <code>django-admin.py startproject</code> command. Its naming is not particularly important but I call it <code>src</code> to convene with the unix folder structure conventions. It&#8217;s important to remember that this folder needs to be added to your python path. If you are using <code>virtualenvwrapper</code> you can use the <code>add2virtualenv</code> command. If not you can <a href="http://stackoverflow.com/questions/3402168/permanently-add-a-directory-to-pythonpath">add it manually</a></p>
+
+<ul>
+<li><code>football</code> : <a href="https://docs.djangoproject.com/en/1.6/intro/tutorial01/#creating-a-project">the documentation</a> puts it best: &#8220;the inner (football)/ directory is the actual Python package for your project. Its name is the Python package name you’ll need to use to import anything inside it (e.g. mysite.urls).&#8221;.  Essentially, this is the location for files that are relevant to the entire project but not a particular application.
+<ul>
+<li>You can use this folder to place other files that don&#8217;t fit in an app but are relevant to your overall project such as <code>sitemaps.py</code>, <code>humans.txt</code>, <code>robots.txt</code>, extra template tags (as long as you include <code>football</code> as an app) etc. In my previous post, this required a separate <code>common</code> or <code>core</code> app.</li>
+<li><code>football/settings</code>: Although it&#8217;s outside the scope of this post, <a href="https://code.djangoproject.com/wiki/SplitSettings">splitting your settings into separate files is a good idea.</a></li>
+</ul></li>
+<li><code>appX</code> : these are your custom applications. In my previous post, I placed my applications in a separate folder for clarity. There are <a href="http://stackoverflow.com/questions/3948356/how-to-keep-all-my-django-applications-in-specific-folder">two ways to achieve this</a> but I have since found that it leads to complications and a conflict between your folder structure and python path so I now just leave all apps sitting alongside one and other. This works well as this folder is much cleaner now that server-level files have been moved up to the parent directory (<span style="color:#fc5959;">site path</span>) and django-level files have been moved into the <code>football</code> module.</li>
+<li><code>static</code> : not to be confused with the static folder in the <span style="color:#4394c2;">environment path</span>, this static folder holds the  files that you want collected by Django&#8217;s <code>contrib.staticfiles</code> app. I prefer having a single folder in the <span style="color:#c2b73d;">project path</span> as opposed to individual static folder in each application.  </li>
+<li><code>utils</code> : a useful folder if you have small functions and modules that don&#8217;t fit elsewhere (usually maths functions, string manipulation functions etc.)</li>
+<li><code>manage.py</code> : this is simply a wrapper for <code>django-admin.py</code> that sets the correct settings file path. For that reason, <a href="http://stackoverflow.com/questions/3220303/when-should-you-use-django-admin-py-verus-manage-py">I prefer to set the <code>DJANGO_SETTINGS_MODULE</code> environment variables and make use of <code>django-admin.py</code> directly.</a></li>
+<li><code>requirements.txt</code> : a list of all installed python libraries generated by <code>pip freeze</code>. I generally use <a href="https://github.com/nvie/pip-tools"><code>pip-tools</code></a>. As mentioned in the previous post: &#8220;Pip is great, but <code>pip-tools</code> is even better. It makes installing updating and dumping dependancies even easier.&#8221;</li>
+</ul>
+
+<h2>Extra Notes</h2>
+
+<p><strong>Backup</strong>: <a href="../a-general-django-project-structure-or-folder-layout/index.html">previously</a> I made sure all my source code was also in my Dropbox (symlinking the files to the appropriate virtualenv folder). I&#8217;ve since moved off Dropbox for backup (no encryption) and am now using Backblaze, so there is no need to do any symlinking.</p>
+
+  </div>
+  <footer class='content-item__footer mt-xs-80'>
+    <p class='list-item__tags'>
+      
+        <a href='../category/web-development/index.html'>Web Development</a> &mdash;
+      
+      
+        
+          <a href='../tag/django/index.html'>Django</a>
+        
+      
+    </p>
+    
+      <p class='list-item__tags'>
+        Last edited 4 months, 3 weeks ago
+      </p>
+        
+  </footer>
+</article>
+      </div>
+    </div>
+    
+      <footer class='row'>   
+        <div class='col-xs-12 col-md-8 col-md-offset-2 center-xs mt-xs-80'>
+          <a class='button' href='#' data-component='comments'>
+            Load Comments
+          </a>
+          <div id='disqus_thread'></div>
+        </div>
+      </footer>
+    
+  </section>
+
+    </main>
+    
+    
+
+<footer class='footer'>
+  <div class='container'>
+    <div class='row mb-xs-40 mb-sm-60'>
+      <div class='col-xs-12 col-md-5'>
+        <h3>Timmy O&#39;Mahony</h3>
+        <p><a class='email' href='mailto:hey@timmyomahony.com'>hey@timmyomahony.com</a></p>
+        <p>I’m a software developer. I can help you solve 
+        a problem, build a product or grow existing project.</p>
+      </div>
+    </div>
+
+    <div class='row mb-xs-40 mb-ms-80'>
+      
+      <div class='col-xs-12 col-sm-6 col-md-4 mb-xs-40'>
+        <h4 class='mb-xs-20 mb-sm-40'>Menu</h4>
+        <div class="row">
+          <div class="col-xs-6">
+            <ul class='list--reset'>
+              <li>
+                <a href='../../index.html'>About</a>
+              </li>
+              <li>
+                <a href='../index.html'>Blog</a>
+              </li>
+              <li>
+                <a href='../../projects/featured/index.html'>Projects</a>
+              </li>
+              <li>
+                <span>&mdash;</span>
+              </li>
+              <li>
+                <a href='../../privacy/index.html'>Privacy</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-xs-6">
+            <ul class='list--reset'>
+              <li>
+                <a class="link--dark" href='../../books/index.html'>Books</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class='col-xs-12 col-sm-6 col-md-4 col-md-offset-1 mb-xs-40'>
+        <h4 class='mb-xs-20 mb-sm-40'>Contact</h4>
+        <ul class='list--reset'>
+          <li>
+            <a href='mailto:hey@timmyomahony.com'>
+              hey@timmyomahony.com
+            </a>
+            <a class="link--dark" href='../../pgp-key/index.html'>
+              (pgp)
+            </a>
+          </li>
+          <li>
+            <a href='skype:live:timmyomahony' target='_blank' title='Skype me'>
+              Skype
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <div class='col-xs-12 col-sm-6 col-md-3 mb-xs-40'>
+        <h4 class='mb-xs-20 mb-sm-40'>Online</h4>
+        <ul class='list--reset'>
+          <li>
+            <a href='https://github.com/timmyomahony/' target='_blank' title='Look through my Github profile'>
+              Github
+            </a>
+          </li>
+          <li>
+            <a href='https://twitter.com/timmyomahony/' target='_blank' title='Look through my Twitter profile'>
+              Twitter
+            </a>
+          </li>
+          <li>
+            <a href='http://stackoverflow.com/users/396300/timmy-omahony' target='_blank' title='See my Stack Overflow profile'>
+              Stack Overflow
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class='row'>
+      <div class='col-xs-12'>
+        <p class='copyright'>Copyright Timmy O’Mahony 2020 &copy; <a class='link--underline' href='../../about-this-site/index.html'>More information</a>  — <a class='link--dark' href='../../changelog/index.html'>Changelog (v1.5.8)</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+    
+    
+    <div class='elevator' data-component='elevator'>
+  <svg version='1.0' viewBox='0 0 32 32' xml:space='preserve' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
+    <polygon points='0.645,10.383 16,23.871 31.355,10.383 29.375,8.129 16,19.878 2.625,8.129 '/>
+  </svg>
+</div>
+    
+  </div>
+  <script src="../../static/js/vendor.min.js"></script>
+  <script src="../../static/js/scripts.min.js"></script>
+  
+
+  <!--
+    Fathom - simple website analytics - https://github.com/usefathom/fathom
+    No personal data is tracked!
+  -->
+  <script>
+    (function(f, a, t, h, o, m){
+      a[h]=a[h]||function(){
+        (a[h].q=a[h].q||[]).push(arguments)
+      };
+      o=f.createElement('script'),
+      m=f.getElementsByTagName('script')[0];
+      o.async=1; o.src=t; o.id='fathom-script';
+      m.parentNode.insertBefore(o,m)
+    })(document, window, 'http://analytics.timmyomahony.com/tracker.js', 'fathom');
+    fathom('set', 'siteId', 'SUOML');
+    fathom('trackPageview');
+  </script>
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "An Updated General Django Project (&gt;= 1.5) Structure or Folder Layout",
+    "description": "excerpt",
+    
+    "url": "timmyomahony.com/blog/updated-django-project-structure-or-folder-layout/",
+    "author": {
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "name": "Timmy O&#39;Mahony",
+  "url": "http://timmyomahony.com",
+  "email": "mailto:hey@timmyomahony.com",
+  "gender": "male",
+  "image": "http://timmyomahony.com/static/images/timmy-omahony-portrait-small.png",
+  "jobTitle": "Software Development",
+  "sameAs": [
+    "https://github.com/timmyomahony/",
+    "http://stackoverflow.com/users/396300/timmy-omahony"
+  ]
+},
+    "datePublished": "2014-03-22",
+    "dateModified": "2019-09-13",
+  }
+  </script>
+
+</body>
+
+<!-- Mirrored from timmyomahony.com/blog/updated-django-project-structure-or-folder-layout/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 03 Feb 2020 07:56:09 GMT -->
+</html>
