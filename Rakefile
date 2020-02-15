@@ -1,8 +1,7 @@
 require "html-proofer"
-require 'rspec/core/rake_task'
 
 desc "Test resulting site"
-task :default => :test do
+task :default do
   sh "bundle exec jekyll build  --future --unpublished"
   options = {
     empty_alt_ignore: true, 
