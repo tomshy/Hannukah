@@ -1,7 +1,7 @@
 require "html-proofer"
 
 desc "Test resulting site"
-task :test do
+task :default => :test do
   sh "bundle exec jekyll build  --future --unpublished"
   options = {
     empty_alt_ignore: true, 
