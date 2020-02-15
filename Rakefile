@@ -1,4 +1,5 @@
 require "html-proofer"
+require 'rspec/core/rake_task'
 
 desc "Test resulting site"
 task :default => :test do
