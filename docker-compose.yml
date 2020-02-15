@@ -1,7 +1,7 @@
 version: "3"
 services:
   site:
-    command: jekyll serve --incremental --future --unpublished -l
+    command: jekyll serve --incremental
     image: jekyll/jekyll:latest
     volumes:
       - ./:/srv/jekyll
