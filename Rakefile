@@ -2,7 +2,7 @@ require "html-proofer"
 
 desc "Test resulting site"
 task :default do
-  sh "bundle exec jekyll build  --future --unpublished"
+  sh "bundle exec jekyll build"
   options = {
     empty_alt_ignore: true, 
     allow_hash_href: true,
