@@ -7,6 +7,8 @@ intro: |
 published: true
 ---
 
+# {{page.title}}
+
 {{page.intro}}
 
 # Lorem Ipsum

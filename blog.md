@@ -11,6 +11,6 @@ layout: other_pages
     <li>
       <a href="{{ post.url }}">> {{ post.title }}</a>
     </li>
-    {{post.excerpt | truncate: 100}}
+    {{post.intro | truncate: 256}}
   {% endfor %}
 <!-- </ul> -->
