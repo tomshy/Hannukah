@@ -1600,9 +1600,10 @@ figure {
 
 .hero {
   position: relative;
-  display: flex;
+  /* display: flex; */
   align-items: center;
-  height: 100vh; }
+  /* height: 100vh;  */
+}
 
 .hero__title {
   font-size: 40px;
@@ -1656,7 +1657,7 @@ figure {
 .hero__arrow {
   animation: bounce 2s infinite;
   position: absolute;
-  bottom: 5rem;
+  /* bottom: 5rem; */
   left: 0; }
   .hero__arrow svg {
     height: 2.75rem; }

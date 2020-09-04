@@ -1,5 +1,5 @@
 ---
-layout: other_pages
+layout: default
 title:  "Say Hi To My Journey"
 author: Tom Nyongesa
 intro: |

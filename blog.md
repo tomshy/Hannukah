@@ -1,7 +1,7 @@
 ---
 title: Through My Mind
 permalink: /blog/
-layout: other_pages
+layout: default
 ---
 
 # {{ page.title }}
